@@ -1,0 +1,745 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		041328839DE47561FB3CC63E /* libPods-BeaconOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41360E573342CB2B8DA3FD1A /* libPods-BeaconOSTests.a */; };
+		7512D19E1B0E2709001ABC19 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7512D19D1B0E2709001ABC19 /* UIColor+Hex.m */; };
+		751886B4199A503B00C61857 /* BCLEncodableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 751886B3199A503B00C61857 /* BCLEncodableObject.m */; };
+		75214A8A190663900093EE28 /* BeaconCtrlBackendTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75214A89190663900093EE28 /* BeaconCtrlBackendTests.m */; };
+		752628971AFA1C2F00B84DBD /* BCLAbstractBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 752628961AFA1C2F00B84DBD /* BCLAbstractBackend.m */; };
+		7526289A1AFA4B3D00B84DBD /* BCLAdminBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 752628991AFA4B3D00B84DBD /* BCLAdminBackend.m */; };
+		755F89EA19792B8F00C69DB5 /* BCLActionHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 755F89E919792B8F00C69DB5 /* BCLActionHandlerFactory.m */; };
+		755F89F01979300D00C69DB5 /* BCLCouponActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 755F89EF1979300D00C69DB5 /* BCLCouponActionHandler.m */; };
+		755F89FA19793F0600C69DB5 /* UIWindow+BCLVisibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755F89F919793F0600C69DB5 /* UIWindow+BCLVisibleViewController.m */; };
+		7568567518F6DC1C00C07F3F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7568567418F6DC1C00C07F3F /* Foundation.framework */; };
+		7568568318F6DC1C00C07F3F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7568568218F6DC1C00C07F3F /* XCTest.framework */; };
+		7568568418F6DC1C00C07F3F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7568567418F6DC1C00C07F3F /* Foundation.framework */; };
+		7568568618F6DC1C00C07F3F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7568568518F6DC1C00C07F3F /* UIKit.framework */; };
+		7568568918F6DC1C00C07F3F /* libBeaconOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7568567118F6DC1C00C07F3F /* libBeaconOS.a */; };
+		7568568F18F6DC1C00C07F3F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7568568D18F6DC1C00C07F3F /* InfoPlist.strings */; };
+		7568569118F6DC1C00C07F3F /* BeaconCtrlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7568569018F6DC1C00C07F3F /* BeaconCtrlTests.m */; };
+		7568569C18F6DC2B00C07F3F /* BCLBeaconCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7568569B18F6DC2B00C07F3F /* BCLBeaconCtrl.m */; };
+		756856B218F6DC3B00C07F3F /* BCLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7568569E18F6DC3B00C07F3F /* BCLAction.m */; };
+		756856B418F6DC3B00C07F3F /* BCLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856A318F6DC3B00C07F3F /* BCLConfiguration.m */; };
+		756856B518F6DC3B00C07F3F /* BCLEventScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856A518F6DC3B00C07F3F /* BCLEventScheduler.m */; };
+		756856B618F6DC3B00C07F3F /* BCLRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856A818F6DC3B00C07F3F /* BCLRange.m */; };
+		756856B718F6DC3B00C07F3F /* BCLRangeRangingBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856AA18F6DC3B00C07F3F /* BCLRangeRangingBatch.m */; };
+		756856B818F6DC3B00C07F3F /* BCLTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856AC18F6DC3B00C07F3F /* BCLTrigger.m */; };
+		756856B918F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856AF18F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.m */; };
+		756856BA18F6DC3B00C07F3F /* SAMCache+BeaconCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856B118F6DC3B00C07F3F /* SAMCache+BeaconCtrl.m */; };
+		756856C218F6DC7100C07F3F /* BCLConditionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 756856C118F6DC7100C07F3F /* BCLConditionEvent.m */; };
+		757534A319012FE400AEE89E /* BCLBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 757534A219012FE400AEE89E /* BCLBackend.m */; };
+		757534A6190144F700AEE89E /* BCLActionEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 757534A5190144F700AEE89E /* BCLActionEvent.m */; };
+		757534A91901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 757534A81901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.m */; };
+		7598E7CA19EECF1100727E9C /* NSObject+BCLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7598E7C919EECF1100727E9C /* NSObject+BCLAdditions.m */; };
+		7598E7CD19EECF4200727E9C /* BCLObservedRangesPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7598E7CC19EECF4200727E9C /* BCLObservedRangesPicker.m */; };
+		7598E7D319EECF7500727E9C /* BCLZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7598E7D219EECF7500727E9C /* BCLZone.m */; };
+		75A6407F1A0A8B700038A60F /* BCLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A6407E1A0A8B700038A60F /* BCLUtils.m */; };
+		75A8C3681986827B0054C5B1 /* BCLURLActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A8C3671986827B0054C5B1 /* BCLURLActionHandler.m */; };
+		75B1B04618FEB4F3009437F9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B1B04518FEB4F3009437F9 /* CoreLocation.framework */; };
+		75B87EB91B31B2BF00439104 /* BCLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B87EB71B31B2BF00439104 /* BCLLocation.m */; };
+		75C4F0DD1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F0DC1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.m */; };
+		75CDAEAE1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CDAEAD1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.m */; };
+		75D5B5151907B1800050F9C4 /* BCLActionEventScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D5B5141907B1800050F9C4 /* BCLActionEventScheduler.m */; };
+		81BC5C7DA96CE7B1B4039761 /* libPods-BeaconOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FDE56748A40DE1C44647747 /* libPods-BeaconOS.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7568568718F6DC1C00C07F3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7568566918F6DC1C00C07F3F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7568567018F6DC1C00C07F3F;
+			remoteInfo = BeaconPlatform;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7568566F18F6DC1C00C07F3F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3DCFFAF590CF4EA999E8ACFA /* libPods-BeaconPlatformTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeaconPlatformTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41360E573342CB2B8DA3FD1A /* libPods-BeaconOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeaconOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CFF93712666A4892AB299EE /* Pods-BeaconOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconOSTests/Pods-BeaconOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6BF0E6935DD4765E6A896704 /* Pods-BeaconOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconOS/Pods-BeaconOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6C0EE1343714409D90DEA814 /* libPods-BeaconPlatform.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeaconPlatform.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7512D19C1B0E2709001ABC19 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		7512D19D1B0E2709001ABC19 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		751886B2199A503B00C61857 /* BCLEncodableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLEncodableObject.h; sourceTree = "<group>"; };
+		751886B3199A503B00C61857 /* BCLEncodableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLEncodableObject.m; sourceTree = "<group>"; };
+		75214A89190663900093EE28 /* BeaconCtrlBackendTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconCtrlBackendTests.m; sourceTree = "<group>"; };
+		752628951AFA1C2F00B84DBD /* BCLAbstractBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLAbstractBackend.h; sourceTree = "<group>"; };
+		752628961AFA1C2F00B84DBD /* BCLAbstractBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLAbstractBackend.m; sourceTree = "<group>"; };
+		752628981AFA4B3D00B84DBD /* BCLAdminBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLAdminBackend.h; sourceTree = "<group>"; };
+		752628991AFA4B3D00B84DBD /* BCLAdminBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLAdminBackend.m; sourceTree = "<group>"; };
+		752EAF4C19093C0700DFD5DA /* BCLBeaconCtrlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLBeaconCtrlDelegate.h; sourceTree = "<group>"; };
+		755F89E819792B8F00C69DB5 /* BCLActionHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLActionHandlerFactory.h; sourceTree = "<group>"; };
+		755F89E919792B8F00C69DB5 /* BCLActionHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLActionHandlerFactory.m; sourceTree = "<group>"; };
+		755F89EE1979300D00C69DB5 /* BCLCouponActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLCouponActionHandler.h; sourceTree = "<group>"; };
+		755F89EF1979300D00C69DB5 /* BCLCouponActionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLCouponActionHandler.m; sourceTree = "<group>"; };
+		755F89F819793F0600C69DB5 /* UIWindow+BCLVisibleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BCLVisibleViewController.h"; sourceTree = "<group>"; };
+		755F89F919793F0600C69DB5 /* UIWindow+BCLVisibleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BCLVisibleViewController.m"; sourceTree = "<group>"; };
+		7568567118F6DC1C00C07F3F /* libBeaconOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeaconOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7568567418F6DC1C00C07F3F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7568567818F6DC1C00C07F3F /* BeaconOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeaconOS-Prefix.pch"; sourceTree = "<group>"; };
+		7568568118F6DC1C00C07F3F /* BeaconOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeaconOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7568568218F6DC1C00C07F3F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7568568518F6DC1C00C07F3F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		7568568C18F6DC1C00C07F3F /* BeaconOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeaconOSTests-Info.plist"; sourceTree = "<group>"; };
+		7568568E18F6DC1C00C07F3F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7568569018F6DC1C00C07F3F /* BeaconCtrlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeaconCtrlTests.m; sourceTree = "<group>"; };
+		7568569A18F6DC2B00C07F3F /* BCLBeaconCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLBeaconCtrl.h; sourceTree = "<group>"; };
+		7568569B18F6DC2B00C07F3F /* BCLBeaconCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLBeaconCtrl.m; sourceTree = "<group>"; };
+		7568569D18F6DC3B00C07F3F /* BCLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLAction.h; sourceTree = "<group>"; };
+		7568569E18F6DC3B00C07F3F /* BCLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLAction.m; sourceTree = "<group>"; };
+		7568569F18F6DC3B00C07F3F /* BCLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLCondition.h; sourceTree = "<group>"; };
+		756856A218F6DC3B00C07F3F /* BCLConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLConfiguration.h; sourceTree = "<group>"; };
+		756856A318F6DC3B00C07F3F /* BCLConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLConfiguration.m; sourceTree = "<group>"; };
+		756856A418F6DC3B00C07F3F /* BCLEventScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLEventScheduler.h; sourceTree = "<group>"; };
+		756856A518F6DC3B00C07F3F /* BCLEventScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLEventScheduler.m; sourceTree = "<group>"; };
+		756856A618F6DC3B00C07F3F /* BCLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLExtension.h; sourceTree = "<group>"; };
+		756856A718F6DC3B00C07F3F /* BCLRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLRange.h; sourceTree = "<group>"; };
+		756856A818F6DC3B00C07F3F /* BCLRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLRange.m; sourceTree = "<group>"; };
+		756856A918F6DC3B00C07F3F /* BCLRangeRangingBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLRangeRangingBatch.h; sourceTree = "<group>"; };
+		756856AA18F6DC3B00C07F3F /* BCLRangeRangingBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLRangeRangingBatch.m; sourceTree = "<group>"; };
+		756856AB18F6DC3B00C07F3F /* BCLTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLTrigger.h; sourceTree = "<group>"; };
+		756856AC18F6DC3B00C07F3F /* BCLTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLTrigger.m; sourceTree = "<group>"; };
+		756856AD18F6DC3B00C07F3F /* BCLTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLTypes.h; sourceTree = "<group>"; };
+		756856AE18F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLBeacon+BeaconCtrl.h"; sourceTree = "<group>"; };
+		756856AF18F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLBeacon+BeaconCtrl.m"; sourceTree = "<group>"; };
+		756856B018F6DC3B00C07F3F /* SAMCache+BeaconCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAMCache+BeaconCtrl.h"; sourceTree = "<group>"; };
+		756856B118F6DC3B00C07F3F /* SAMCache+BeaconCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAMCache+BeaconCtrl.m"; sourceTree = "<group>"; };
+		756856C018F6DC7100C07F3F /* BCLConditionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLConditionEvent.h; sourceTree = "<group>"; };
+		756856C118F6DC7100C07F3F /* BCLConditionEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLConditionEvent.m; sourceTree = "<group>"; };
+		7575349E19012E1E00AEE89E /* NSObject+BCLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BCLAdditions.h"; sourceTree = "<group>"; };
+		757534A119012FE400AEE89E /* BCLBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLBackend.h; sourceTree = "<group>"; };
+		757534A219012FE400AEE89E /* BCLBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLBackend.m; sourceTree = "<group>"; };
+		757534A4190144F700AEE89E /* BCLActionEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLActionEvent.h; sourceTree = "<group>"; };
+		757534A5190144F700AEE89E /* BCLActionEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLActionEvent.m; sourceTree = "<group>"; };
+		757534A71901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+BCLHTTPCodes.h"; sourceTree = "<group>"; };
+		757534A81901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+BCLHTTPCodes.m"; sourceTree = "<group>"; };
+		7598E7C919EECF1100727E9C /* NSObject+BCLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BCLAdditions.m"; sourceTree = "<group>"; };
+		7598E7CB19EECF4200727E9C /* BCLObservedRangesPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLObservedRangesPicker.h; sourceTree = "<group>"; };
+		7598E7CC19EECF4200727E9C /* BCLObservedRangesPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLObservedRangesPicker.m; sourceTree = "<group>"; };
+		7598E7D119EECF7500727E9C /* BCLZone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLZone.h; sourceTree = "<group>"; };
+		7598E7D219EECF7500727E9C /* BCLZone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLZone.m; sourceTree = "<group>"; };
+		759BD1921979434C00470BD9 /* BCLActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLActionHandler.h; sourceTree = "<group>"; };
+		75A6407D1A0A8B700038A60F /* BCLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLUtils.h; sourceTree = "<group>"; };
+		75A6407E1A0A8B700038A60F /* BCLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLUtils.m; sourceTree = "<group>"; };
+		75A8C3661986827B0054C5B1 /* BCLURLActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLURLActionHandler.h; sourceTree = "<group>"; };
+		75A8C3671986827B0054C5B1 /* BCLURLActionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLURLActionHandler.m; sourceTree = "<group>"; };
+		75B1B04318FEB4E6009437F9 /* libPods-BeaconPlatform.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-BeaconPlatform.a"; path = "Pods/build/Debug-iphoneos/libPods-BeaconPlatform.a"; sourceTree = "<group>"; };
+		75B1B04518FEB4F3009437F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		75B87EB71B31B2BF00439104 /* BCLLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLLocation.m; sourceTree = "<group>"; };
+		75B87EB81B31B2BF00439104 /* BCLObservedRangesPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCLObservedRangesPicker.h; path = Private/BCLObservedRangesPicker.h; sourceTree = "<group>"; };
+		75B87EBA1B31B31300439104 /* BCLLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCLLocation.h; sourceTree = "<group>"; };
+		75C4F0DB1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+BCLiCloud.h"; sourceTree = "<group>"; };
+		75C4F0DC1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+BCLiCloud.m"; sourceTree = "<group>"; };
+		75CDAEAC1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCBeaconCtrlAdmin.h; sourceTree = "<group>"; };
+		75CDAEAD1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCBeaconCtrlAdmin.m; sourceTree = "<group>"; };
+		75D5B5131907B1800050F9C4 /* BCLActionEventScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCLActionEventScheduler.h; sourceTree = "<group>"; };
+		75D5B5141907B1800050F9C4 /* BCLActionEventScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCLActionEventScheduler.m; sourceTree = "<group>"; };
+		8FDE56748A40DE1C44647747 /* libPods-BeaconOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeaconOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4681755E6C19170BBCB959C /* Pods-BeaconOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconOS/Pods-BeaconOS.release.xcconfig"; sourceTree = "<group>"; };
+		EC7BB98D300FAB838ABA2718 /* Pods-BeaconOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconOSTests/Pods-BeaconOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7568566E18F6DC1C00C07F3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7568567518F6DC1C00C07F3F /* Foundation.framework in Frameworks */,
+				81BC5C7DA96CE7B1B4039761 /* libPods-BeaconOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7568567E18F6DC1C00C07F3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7568568318F6DC1C00C07F3F /* XCTest.framework in Frameworks */,
+				7568568618F6DC1C00C07F3F /* UIKit.framework in Frameworks */,
+				7568568918F6DC1C00C07F3F /* libBeaconOS.a in Frameworks */,
+				75B1B04618FEB4F3009437F9 /* CoreLocation.framework in Frameworks */,
+				7568568418F6DC1C00C07F3F /* Foundation.framework in Frameworks */,
+				041328839DE47561FB3CC63E /* libPods-BeaconOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7568566818F6DC1C00C07F3F = {
+			isa = PBXGroup;
+			children = (
+				7568567618F6DC1C00C07F3F /* BeaconOS */,
+				7568568A18F6DC1C00C07F3F /* BeaconOSTests */,
+				7568567318F6DC1C00C07F3F /* Frameworks */,
+				7568567218F6DC1C00C07F3F /* Products */,
+				9273225AB8FD6E8466A6C410 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		7568567218F6DC1C00C07F3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7568567118F6DC1C00C07F3F /* libBeaconOS.a */,
+				7568568118F6DC1C00C07F3F /* BeaconOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7568567318F6DC1C00C07F3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75B1B04518FEB4F3009437F9 /* CoreLocation.framework */,
+				75B1B04318FEB4E6009437F9 /* libPods-BeaconPlatform.a */,
+				7568567418F6DC1C00C07F3F /* Foundation.framework */,
+				7568568218F6DC1C00C07F3F /* XCTest.framework */,
+				7568568518F6DC1C00C07F3F /* UIKit.framework */,
+				6C0EE1343714409D90DEA814 /* libPods-BeaconPlatform.a */,
+				3DCFFAF590CF4EA999E8ACFA /* libPods-BeaconPlatformTests.a */,
+				8FDE56748A40DE1C44647747 /* libPods-BeaconOS.a */,
+				41360E573342CB2B8DA3FD1A /* libPods-BeaconOSTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7568567618F6DC1C00C07F3F /* BeaconOS */ = {
+			isa = PBXGroup;
+			children = (
+				7575349D19012E0200AEE89E /* Private */,
+				756856BF18F6DC7100C07F3F /* Conditions */,
+				751886B2199A503B00C61857 /* BCLEncodableObject.h */,
+				751886B3199A503B00C61857 /* BCLEncodableObject.m */,
+				7568569A18F6DC2B00C07F3F /* BCLBeaconCtrl.h */,
+				7568569B18F6DC2B00C07F3F /* BCLBeaconCtrl.m */,
+				75CDAEAC1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.h */,
+				75CDAEAD1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.m */,
+				752EAF4C19093C0700DFD5DA /* BCLBeaconCtrlDelegate.h */,
+				7568569D18F6DC3B00C07F3F /* BCLAction.h */,
+				7568569E18F6DC3B00C07F3F /* BCLAction.m */,
+				7568569F18F6DC3B00C07F3F /* BCLCondition.h */,
+				756856A218F6DC3B00C07F3F /* BCLConfiguration.h */,
+				756856A318F6DC3B00C07F3F /* BCLConfiguration.m */,
+				756856A418F6DC3B00C07F3F /* BCLEventScheduler.h */,
+				756856A518F6DC3B00C07F3F /* BCLEventScheduler.m */,
+				756856A618F6DC3B00C07F3F /* BCLExtension.h */,
+				756856A718F6DC3B00C07F3F /* BCLRange.h */,
+				756856A818F6DC3B00C07F3F /* BCLRange.m */,
+				7598E7D119EECF7500727E9C /* BCLZone.h */,
+				7598E7D219EECF7500727E9C /* BCLZone.m */,
+				75B87EBA1B31B31300439104 /* BCLLocation.h */,
+				75B87EB71B31B2BF00439104 /* BCLLocation.m */,
+				75B87EB81B31B2BF00439104 /* BCLObservedRangesPicker.h */,
+				756856A918F6DC3B00C07F3F /* BCLRangeRangingBatch.h */,
+				756856AA18F6DC3B00C07F3F /* BCLRangeRangingBatch.m */,
+				756856AB18F6DC3B00C07F3F /* BCLTrigger.h */,
+				756856AC18F6DC3B00C07F3F /* BCLTrigger.m */,
+				756856AD18F6DC3B00C07F3F /* BCLTypes.h */,
+				756856AE18F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.h */,
+				756856AF18F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.m */,
+				756856B018F6DC3B00C07F3F /* SAMCache+BeaconCtrl.h */,
+				756856B118F6DC3B00C07F3F /* SAMCache+BeaconCtrl.m */,
+				7512D19C1B0E2709001ABC19 /* UIColor+Hex.h */,
+				7512D19D1B0E2709001ABC19 /* UIColor+Hex.m */,
+				7568567718F6DC1C00C07F3F /* Supporting Files */,
+			);
+			path = BeaconOS;
+			sourceTree = "<group>";
+		};
+		7568567718F6DC1C00C07F3F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7568567818F6DC1C00C07F3F /* BeaconOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7568568A18F6DC1C00C07F3F /* BeaconOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				75214A89190663900093EE28 /* BeaconCtrlBackendTests.m */,
+				7568569018F6DC1C00C07F3F /* BeaconCtrlTests.m */,
+				7568568B18F6DC1C00C07F3F /* Supporting Files */,
+			);
+			path = BeaconOSTests;
+			sourceTree = "<group>";
+		};
+		7568568B18F6DC1C00C07F3F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7568568C18F6DC1C00C07F3F /* BeaconOSTests-Info.plist */,
+				7568568D18F6DC1C00C07F3F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		756856BF18F6DC7100C07F3F /* Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				756856C018F6DC7100C07F3F /* BCLConditionEvent.h */,
+				756856C118F6DC7100C07F3F /* BCLConditionEvent.m */,
+			);
+			path = Conditions;
+			sourceTree = "<group>";
+		};
+		7575349D19012E0200AEE89E /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				755F89F819793F0600C69DB5 /* UIWindow+BCLVisibleViewController.h */,
+				755F89F919793F0600C69DB5 /* UIWindow+BCLVisibleViewController.m */,
+				7575349E19012E1E00AEE89E /* NSObject+BCLAdditions.h */,
+				7598E7C919EECF1100727E9C /* NSObject+BCLAdditions.m */,
+				757534A71901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.h */,
+				757534A81901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.m */,
+				752628951AFA1C2F00B84DBD /* BCLAbstractBackend.h */,
+				752628961AFA1C2F00B84DBD /* BCLAbstractBackend.m */,
+				757534A119012FE400AEE89E /* BCLBackend.h */,
+				757534A219012FE400AEE89E /* BCLBackend.m */,
+				752628981AFA4B3D00B84DBD /* BCLAdminBackend.h */,
+				752628991AFA4B3D00B84DBD /* BCLAdminBackend.m */,
+				757534A4190144F700AEE89E /* BCLActionEvent.h */,
+				757534A5190144F700AEE89E /* BCLActionEvent.m */,
+				75D5B5131907B1800050F9C4 /* BCLActionEventScheduler.h */,
+				75D5B5141907B1800050F9C4 /* BCLActionEventScheduler.m */,
+				75C4F0DB1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.h */,
+				75C4F0DC1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.m */,
+				755F89E819792B8F00C69DB5 /* BCLActionHandlerFactory.h */,
+				755F89E919792B8F00C69DB5 /* BCLActionHandlerFactory.m */,
+				759BD1921979434C00470BD9 /* BCLActionHandler.h */,
+				755F89EE1979300D00C69DB5 /* BCLCouponActionHandler.h */,
+				755F89EF1979300D00C69DB5 /* BCLCouponActionHandler.m */,
+				75A8C3661986827B0054C5B1 /* BCLURLActionHandler.h */,
+				75A8C3671986827B0054C5B1 /* BCLURLActionHandler.m */,
+				7598E7CB19EECF4200727E9C /* BCLObservedRangesPicker.h */,
+				7598E7CC19EECF4200727E9C /* BCLObservedRangesPicker.m */,
+				75A6407D1A0A8B700038A60F /* BCLUtils.h */,
+				75A6407E1A0A8B700038A60F /* BCLUtils.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		9273225AB8FD6E8466A6C410 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BF0E6935DD4765E6A896704 /* Pods-BeaconOS.debug.xcconfig */,
+				E4681755E6C19170BBCB959C /* Pods-BeaconOS.release.xcconfig */,
+				EC7BB98D300FAB838ABA2718 /* Pods-BeaconOSTests.debug.xcconfig */,
+				5CFF93712666A4892AB299EE /* Pods-BeaconOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7568567018F6DC1C00C07F3F /* BeaconOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7568569418F6DC1C00C07F3F /* Build configuration list for PBXNativeTarget "BeaconOS" */;
+			buildPhases = (
+				874B2F46FC0D4943968BDB00 /* Check Pods Manifest.lock */,
+				7568566D18F6DC1C00C07F3F /* Sources */,
+				7568566E18F6DC1C00C07F3F /* Frameworks */,
+				7568566F18F6DC1C00C07F3F /* CopyFiles */,
+				CAD1EB6EF580F0F5422404D1 /* Copy Pods Resources */,
+				7575D6111B29D87A000634EA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeaconOS;
+			productName = BeaconPlatform;
+			productReference = 7568567118F6DC1C00C07F3F /* libBeaconOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7568568018F6DC1C00C07F3F /* BeaconOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7568569718F6DC1C00C07F3F /* Build configuration list for PBXNativeTarget "BeaconOSTests" */;
+			buildPhases = (
+				5C71DF27EB1B4641933B0C81 /* Check Pods Manifest.lock */,
+				7568567D18F6DC1C00C07F3F /* Sources */,
+				7568567E18F6DC1C00C07F3F /* Frameworks */,
+				7568567F18F6DC1C00C07F3F /* Resources */,
+				3032E4DB0520AE36DC094EE3 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7568568818F6DC1C00C07F3F /* PBXTargetDependency */,
+			);
+			name = BeaconOSTests;
+			productName = BeaconPlatformTests;
+			productReference = 7568568118F6DC1C00C07F3F /* BeaconOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7568566918F6DC1C00C07F3F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Upnext Ltd.";
+			};
+			buildConfigurationList = 7568566C18F6DC1C00C07F3F /* Build configuration list for PBXProject "BeaconOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7568566818F6DC1C00C07F3F;
+			productRefGroup = 7568567218F6DC1C00C07F3F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7568567018F6DC1C00C07F3F /* BeaconOS */,
+				7568568018F6DC1C00C07F3F /* BeaconOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7568567F18F6DC1C00C07F3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7568568F18F6DC1C00C07F3F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3032E4DB0520AE36DC094EE3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeaconOSTests/Pods-BeaconOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C71DF27EB1B4641933B0C81 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7575D6111B29D87A000634EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -f /usr/local/bin/appledoc ]\nthen\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"UP-NEXT\"  \\\n--company-id com.up-next \\\n--no-create-docset \\\n--no-repeat-first-par \\\n--create-html \\\n--logformat xcode \\\n--output help \\\n--use-single-star \\\n--exclude-output \"${PROJECT_NAME}/Private\" \\\n--exit-threshold 2 \\\nBeaconOS\nfi";
+		};
+		874B2F46FC0D4943968BDB00 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CAD1EB6EF580F0F5422404D1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeaconOS/Pods-BeaconOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7568566D18F6DC1C00C07F3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				756856C218F6DC7100C07F3F /* BCLConditionEvent.m in Sources */,
+				756856B618F6DC3B00C07F3F /* BCLRange.m in Sources */,
+				756856B918F6DC3B00C07F3F /* CLBeacon+BeaconCtrl.m in Sources */,
+				7568569C18F6DC2B00C07F3F /* BCLBeaconCtrl.m in Sources */,
+				756856B418F6DC3B00C07F3F /* BCLConfiguration.m in Sources */,
+				7598E7CD19EECF4200727E9C /* BCLObservedRangesPicker.m in Sources */,
+				755F89EA19792B8F00C69DB5 /* BCLActionHandlerFactory.m in Sources */,
+				7512D19E1B0E2709001ABC19 /* UIColor+Hex.m in Sources */,
+				756856BA18F6DC3B00C07F3F /* SAMCache+BeaconCtrl.m in Sources */,
+				75A8C3681986827B0054C5B1 /* BCLURLActionHandler.m in Sources */,
+				752628971AFA1C2F00B84DBD /* BCLAbstractBackend.m in Sources */,
+				756856B818F6DC3B00C07F3F /* BCLTrigger.m in Sources */,
+				757534A319012FE400AEE89E /* BCLBackend.m in Sources */,
+				75C4F0DD1920DDB2005401A4 /* NSUserDefaults+BCLiCloud.m in Sources */,
+				75A6407F1A0A8B700038A60F /* BCLUtils.m in Sources */,
+				75D5B5151907B1800050F9C4 /* BCLActionEventScheduler.m in Sources */,
+				75B87EB91B31B2BF00439104 /* BCLLocation.m in Sources */,
+				755F89FA19793F0600C69DB5 /* UIWindow+BCLVisibleViewController.m in Sources */,
+				756856B718F6DC3B00C07F3F /* BCLRangeRangingBatch.m in Sources */,
+				7598E7CA19EECF1100727E9C /* NSObject+BCLAdditions.m in Sources */,
+				757534A91901544900AEE89E /* NSHTTPURLResponse+BCLHTTPCodes.m in Sources */,
+				751886B4199A503B00C61857 /* BCLEncodableObject.m in Sources */,
+				7526289A1AFA4B3D00B84DBD /* BCLAdminBackend.m in Sources */,
+				756856B218F6DC3B00C07F3F /* BCLAction.m in Sources */,
+				757534A6190144F700AEE89E /* BCLActionEvent.m in Sources */,
+				75CDAEAE1AF914E10038B1E5 /* BLCBeaconCtrlAdmin.m in Sources */,
+				7598E7D319EECF7500727E9C /* BCLZone.m in Sources */,
+				756856B518F6DC3B00C07F3F /* BCLEventScheduler.m in Sources */,
+				755F89F01979300D00C69DB5 /* BCLCouponActionHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7568567D18F6DC1C00C07F3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75214A8A190663900093EE28 /* BeaconCtrlBackendTests.m in Sources */,
+				7568569118F6DC1C00C07F3F /* BeaconCtrlTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7568568818F6DC1C00C07F3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7568567018F6DC1C00C07F3F /* BeaconOS */;
+			targetProxy = 7568568718F6DC1C00C07F3F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7568568D18F6DC1C00C07F3F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7568568E18F6DC1C00C07F3F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7568569218F6DC1C00C07F3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7568569318F6DC1C00C07F3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7568569518F6DC1C00C07F3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BF0E6935DD4765E6A896704 /* Pods-BeaconOS.debug.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/BeaconOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeaconOS/BeaconOS-Prefix.pch";
+				PRODUCT_NAME = BeaconOS;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7568569618F6DC1C00C07F3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4681755E6C19170BBCB959C /* Pods-BeaconOS.release.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/BeaconOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeaconOS/BeaconOS-Prefix.pch";
+				PRODUCT_NAME = BeaconOS;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7568569818F6DC1C00C07F3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC7BB98D300FAB838ABA2718 /* Pods-BeaconOSTests.debug.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeaconOS/BeaconOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BeaconOSTests/BeaconOSTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = BeaconOSTests;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7568569918F6DC1C00C07F3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CFF93712666A4892AB299EE /* Pods-BeaconOSTests.release.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeaconOS/BeaconOS-Prefix.pch";
+				INFOPLIST_FILE = "BeaconOSTests/BeaconOSTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				PRODUCT_NAME = BeaconOSTests;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7568566C18F6DC1C00C07F3F /* Build configuration list for PBXProject "BeaconOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7568569218F6DC1C00C07F3F /* Debug */,
+				7568569318F6DC1C00C07F3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7568569418F6DC1C00C07F3F /* Build configuration list for PBXNativeTarget "BeaconOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7568569518F6DC1C00C07F3F /* Debug */,
+				7568569618F6DC1C00C07F3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7568569718F6DC1C00C07F3F /* Build configuration list for PBXNativeTarget "BeaconOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7568569818F6DC1C00C07F3F /* Debug */,
+				7568569918F6DC1C00C07F3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7568566918F6DC1C00C07F3F /* Project object */;
+}

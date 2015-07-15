@@ -1,0 +1,10 @@
+*.DS_Store
+.idea
+
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+BeaconCtrl.xcodeproj/project.xcworkspace/
+
+*.swp
+*~.nib

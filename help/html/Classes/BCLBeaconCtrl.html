@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BCLBeaconCtrl Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BeaconCtrl </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">UP-NEXT</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/clientId">clientId</option>
+		
+		<option value="//api/name/clientSecret">clientSecret</option>
+		
+		<option value="//api/name/configuration">configuration</option>
+		
+		<option value="//api/name/delegate">delegate</option>
+		
+		<option value="//api/name/observedBeacons">observedBeacons</option>
+		
+		<option value="//api/name/paused">paused</option>
+		
+		<option value="//api/name/userId">userId</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/beaconCtrlRestoredFromCache">+ beaconCtrlRestoredFromCache</option>
+		
+		<option value="//api/name/deleteBeaconCtrlFromCache">+ deleteBeaconCtrlFromCache</option>
+		
+		<option value="//api/name/setupBeaconCtrlWithClientId:clientSecret:userId:pushEnvironment:pushToken:completion:">+ setupBeaconCtrlWithClientId:clientSecret:userId:pushEnvironment:pushToken:completion:</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/beaconsSortedByDistance">- beaconsSortedByDistance</option>
+		
+		<option value="//api/name/closestBeacon">- closestBeacon</option>
+		
+		<option value="//api/name/currentZone">- currentZone</option>
+		
+		<option value="//api/name/fetchConfiguration:">- fetchConfiguration:</option>
+		
+		<option value="//api/name/fetchUsersInRangesOfBeacons:zones:completion:">- fetchUsersInRangesOfBeacons:zones:completion:</option>
+		
+		<option value="//api/name/handleNotification:error:">- handleNotification:error:</option>
+		
+		<option value="//api/name/isBackgroundAppRefreshAvailable">- isBackgroundAppRefreshAvailable</option>
+		
+		<option value="//api/name/isBeaconCtrlReadyToProcessBeaconActions:">- isBeaconCtrlReadyToProcessBeaconActions:</option>
+		
+		<option value="//api/name/isBeaconMonitoringAvailable">- isBeaconMonitoringAvailable</option>
+		
+		<option value="//api/name/isBluetoothTurnedOn">- isBluetoothTurnedOn</option>
+		
+		<option value="//api/name/isLocationServicesAvailable">- isLocationServicesAvailable</option>
+		
+		<option value="//api/name/isNotificationsAvailable">- isNotificationsAvailable</option>
+		
+		<option value="//api/name/lastEnteredBeacon">- lastEnteredBeacon</option>
+		
+		<option value="//api/name/logout">- logout</option>
+		
+		<option value="//api/name/recheckCurrentZone">- recheckCurrentZone</option>
+		
+		<option value="//api/name/startMonitoringBeacons">- startMonitoringBeacons</option>
+		
+		<option value="//api/name/stopMonitoringBeacons">- stopMonitoringBeacons</option>
+		
+		<option value="//api/name/storeInCache">- storeInCache</option>
+		
+		<option value="//api/name/updateMonitoredBeacons">- updateMonitoredBeacons</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BCLBeaconCtrl Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>BCLEncodableObject : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BCLBeaconCtrl.h<br />BCLBeaconCtrl.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A BCLBeaconCtrl singleton is the main point of interaction with BeaconCtrl Client API</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Properties" name="task_Properties"></a>
+						<h2 class="task-title">Properties</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/configuration" title="configuration"></a>
+	<h3 class="method-title"><code><a href="#//api/name/configuration">&nbsp;&nbsp;configuration</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A reference to beacons', zones' and actions' configuration fetched from the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) BCLConfiguration *configuration</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/paused" title="paused"></a>
+	<h3 class="method-title"><code><a href="#//api/name/paused">&nbsp;&nbsp;paused</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Processing status. YES if processing is paused.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (assign) BOOL paused</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/clientId" title="clientId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/clientId">&nbsp;&nbsp;clientId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>client id obtained from the admin panel for authentication</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (copy, nonatomic, readonly) NSString *clientId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/clientSecret" title="clientSecret"></a>
+	<h3 class="method-title"><code><a href="#//api/name/clientSecret">&nbsp;&nbsp;clientSecret</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>client secret obtained from the admin panel for authentication</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (copy, nonatomic, readonly) NSString *clientSecret</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/userId" title="userId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/userId">&nbsp;&nbsp;userId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>an arbitrary string identifier for an app user. given as a parameter during the setup</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (copy, nonatomic, readonly) NSString *userId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/observedBeacons" title="observedBeacons"></a>
+	<h3 class="method-title"><code><a href="#//api/name/observedBeacons">&nbsp;&nbsp;observedBeacons</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A set of beacons that are currently monitored by the SDK</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSSet *observedBeacons</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>a weak reference to the delegate</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak) id&lt;BCLBeaconCtrlDelegate&gt; delegate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Methods" name="task_Methods"></a>
+						<h2 class="task-title">Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/isBluetoothTurnedOn" title="isBluetoothTurnedOn"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isBluetoothTurnedOn">&ndash;&nbsp;isBluetoothTurnedOn</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check, if bluetooth is turned on</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isBluetoothTurnedOn</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES, if bluetooth is turned on</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isBeaconMonitoringAvailable" title="isBeaconMonitoringAvailable"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isBeaconMonitoringAvailable">&ndash;&nbsp;isBeaconMonitoringAvailable</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check, if the current device supports monitoring beacons</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isBeaconMonitoringAvailable</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES, if the current device supports monitoring beacons</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isLocationServicesAvailable" title="isLocationServicesAvailable"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isLocationServicesAvailable">&ndash;&nbsp;isLocationServicesAvailable</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check, if the location services are turned on for the current app</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isLocationServicesAvailable</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Yes, if the location services are turned on for the current app</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isBackgroundAppRefreshAvailable" title="isBackgroundAppRefreshAvailable"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isBackgroundAppRefreshAvailable">&ndash;&nbsp;isBackgroundAppRefreshAvailable</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check, if background app refresh is turned on for the current app</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isBackgroundAppRefreshAvailable</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Yes, if background app refresh is turned on for the current app</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isNotificationsAvailable" title="isNotificationsAvailable"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isNotificationsAvailable">&ndash;&nbsp;isNotificationsAvailable</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check, if notifications are turned on for the current app</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isNotificationsAvailable</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Yes, if notifications are turned on for the current app</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isBeaconCtrlReadyToProcessBeaconActions:" title="isBeaconCtrlReadyToProcessBeaconActions:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isBeaconCtrlReadyToProcessBeaconActions:">&ndash;&nbsp;isBeaconCtrlReadyToProcessBeaconActions:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Check, if the current device and the running app are capable of processing beacon actions</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)isBeaconCtrlReadyToProcessBeaconActions:(NSError **)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>A pointer to an NSError object that will be populated with error info, if processing beacon actions is not possible</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES, if the current device and the running app are capable of processing beacon actions</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/startMonitoringBeacons" title="startMonitoringBeacons"></a>
+	<h3 class="method-title"><code><a href="#//api/name/startMonitoringBeacons">&ndash;&nbsp;startMonitoringBeacons</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Start responding to beacon events</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)startMonitoringBeacons</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES, if BecaonOS has successfully started monitoring, NO otherwise</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/stopMonitoringBeacons" title="stopMonitoringBeacons"></a>
+	<h3 class="method-title"><code><a href="#//api/name/stopMonitoringBeacons">&ndash;&nbsp;stopMonitoringBeacons</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Stop responding to beacon events</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)stopMonitoringBeacons</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateMonitoredBeacons" title="updateMonitoredBeacons"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateMonitoredBeacons">&ndash;&nbsp;updateMonitoredBeacons</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The main method that determines which beacons should currently be monitored, basing on the estimated location of the device</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)updateMonitoredBeacons</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES, if BecaonCtrl has successfully updated monitored beacons, NO otherwise</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/currentZone" title="currentZone"></a>
+	<h3 class="method-title"><code><a href="#//api/name/currentZone">&ndash;&nbsp;currentZone</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The zone that the user&rsquo;s device is currently in</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BCLZone *)currentZone</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>The zone that the user&rsquo;s device is currently in</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recheckCurrentZone" title="recheckCurrentZone"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recheckCurrentZone">&ndash;&nbsp;recheckCurrentZone</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Recalculates the current zone basing on the signal strengths of visible beacons</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)recheckCurrentZone</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/closestBeacon" title="closestBeacon"></a>
+	<h3 class="method-title"><code><a href="#//api/name/closestBeacon">&ndash;&nbsp;closestBeacon</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The beacon that is closest to the user&rsquo;s device</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BCLBeacon *)closestBeacon</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>The beacon that is closest to the user&rsquo;s device</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/lastEnteredBeacon" title="lastEnteredBeacon"></a>
+	<h3 class="method-title"><code><a href="#//api/name/lastEnteredBeacon">&ndash;&nbsp;lastEnteredBeacon</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The beacon whose range was last entered by the user&rsquo;s device</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BCLBeacon *)lastEnteredBeacon</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>The beacon whose range was last entered by the user&rsquo;s device</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/beaconsSortedByDistance" title="beaconsSortedByDistance"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconsSortedByDistance">&ndash;&nbsp;beaconsSortedByDistance</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>An array of beacons sorted ascendingly by distance from the user&rsquo;s device</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray *)beaconsSortedByDistance</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>An array of beacons sorted ascendingly by distance from the user&rsquo;s device</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setupBeaconCtrlWithClientId:clientSecret:userId:pushEnvironment:pushToken:completion:" title="setupBeaconCtrlWithClientId:clientSecret:userId:pushEnvironment:pushToken:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setupBeaconCtrlWithClientId:clientSecret:userId:pushEnvironment:pushToken:completion:">+&nbsp;setupBeaconCtrlWithClientId:clientSecret:userId:pushEnvironment:pushToken:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>the main setup method for the SDK</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setupBeaconCtrlWithClientId:(NSString *)<em>clientId</em> clientSecret:(NSString *)<em>clientSecret</em> userId:(NSString *)<em>userId</em> pushEnvironment:(BCLBeaconCtrlPushEnvironment)<em>pushEnvironment</em> pushToken:(NSString *)<em>pushToken</em> completion:(void ( ^ ) ( BCLBeaconCtrl *beaconCtrl , BOOL isRestoredFromCache , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>clientId</code></th>
+						<td><p>Client id obtained from the admin panel for authentication</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>clientSecret</code></th>
+						<td><p>Client secret obtained from the admin panel for authentication</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userId</code></th>
+						<td><p>An arbitrary string identifier for an app user. given as a parameter during the setup</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pushEnvironment</code></th>
+						<td><p>Push environment that should be used in the current build as defined in &ldquo;BCLBeaconCtrlPushEnvironment&rdquo; NS_ENUM</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pushToken</code></th>
+						<td><p>Devices push token retrieved from the APNS or nil, if the push environment is BCLBeaconCtrlPushEnvironmentNone</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>The completion handler called after the setup is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/beaconCtrlRestoredFromCache" title="beaconCtrlRestoredFromCache"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconCtrlRestoredFromCache">+&nbsp;beaconCtrlRestoredFromCache</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A BCLBeaconCtrl instance restored from the device&rsquo;s cache</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (BCLBeaconCtrl *)beaconCtrlRestoredFromCache</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>A BCLBeaconCtrl instance restored from the device&rsquo;s cache</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/storeInCache" title="storeInCache"></a>
+	<h3 class="method-title"><code><a href="#//api/name/storeInCache">&ndash;&nbsp;storeInCache</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Stored the receiver in the device&rsquo;s cache</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)storeInCache</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Should be called when the application is terminated, so that all the beacon and/or zone actions are correctly handled when the application is launched after some beacon event has occured</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteBeaconCtrlFromCache" title="deleteBeaconCtrlFromCache"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteBeaconCtrlFromCache">+&nbsp;deleteBeaconCtrlFromCache</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Deletes the currently stored BCLBeaconCtrl instance from the device&rsquo;s cache</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)deleteBeaconCtrlFromCache</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/handleNotification:error:" title="handleNotification:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/handleNotification:error:">&ndash;&nbsp;handleNotification:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A method for handling push and local notifications fired by BeaconCtrl</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)handleNotification:(NSDictionary *)<em>userInfo</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>BeaconCtrl backend sends some push notifications to the SDK in order to fire some admin-defined beacon and zone actions; BeaconCtrl SDK fires some local notifications for the same purpose.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchConfiguration:" title="fetchConfiguration:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchConfiguration:">&ndash;&nbsp;fetchConfiguration:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fetches the latest configuration from the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchConfiguration:(void ( ^ ) ( NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>The completion handler that is fired after the fetch is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchUsersInRangesOfBeacons:zones:completion:" title="fetchUsersInRangesOfBeacons:zones:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchUsersInRangesOfBeacons:zones:completion:">&ndash;&nbsp;fetchUsersInRangesOfBeacons:zones:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fetches users who are in range of given beacons or zones</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchUsersInRangesOfBeacons:(NSSet *)<em>beacons</em> zones:(NSSet *)<em>zones</em> completion:(void ( ^ ) ( NSDictionary *result , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>beacons</code></th>
+						<td><p>A set of beacons that an SDK user wants to query for users being in their range</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>zones</code></th>
+						<td><p>A set of zone that an SDK user wants to query for users being in their range</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>The completion handler that is fired after the fetch is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Available when the Presence Add-on is activated for the application in the Admin Panel</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/logout" title="logout"></a>
+	<h3 class="method-title"><code><a href="#//api/name/logout">&ndash;&nbsp;logout</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Logs out the current SDK client</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)logout</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrl.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 UP-NEXT. All rights reserved. Updated: 2015-07-14</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

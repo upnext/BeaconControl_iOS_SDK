@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BCLBeaconCtrlAdmin Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BeaconCtrl </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">UP-NEXT</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/beacons">beacons</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/beaconCtrlAdminWithCliendId:clientSecret:">+ beaconCtrlAdminWithCliendId:clientSecret:</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/createBeacon:testActionName:testActionTrigger:testActionAttributes:completion:">- createBeacon:testActionName:testActionTrigger:testActionAttributes:completion:</option>
+		
+		<option value="//api/name/createZone:completion:">- createZone:completion:</option>
+		
+		<option value="//api/name/deleteBeacon:completion:">- deleteBeacon:completion:</option>
+		
+		<option value="//api/name/deleteZone:completion:">- deleteZone:completion:</option>
+		
+		<option value="//api/name/fetchTestApplicationCredentials:">- fetchTestApplicationCredentials:</option>
+		
+		<option value="//api/name/fetchZoneColors:">- fetchZoneColors:</option>
+		
+		<option value="//api/name/fetchZonesAndBeacons:">- fetchZonesAndBeacons:</option>
+		
+		<option value="//api/name/loginAdminUserWithEmail:password:completion:">- loginAdminUserWithEmail:password:completion:</option>
+		
+		<option value="//api/name/registerAdminUserWithEmail:password:passwordConfirmation:completion:">- registerAdminUserWithEmail:password:passwordConfirmation:completion:</option>
+		
+		<option value="//api/name/updateBeacon:testActionName:testActionTrigger:testActionAttributes:completion:">- updateBeacon:testActionName:testActionTrigger:testActionAttributes:completion:</option>
+		
+		<option value="//api/name/updateZone:completion:">- updateZone:completion:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BCLBeaconCtrlAdmin Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BCLBeaconCtrlAdmin.h<br />BCLBeaconCtrlAdmin.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A BCLBeaconCtrlAdmin singleton is the main point of interaction with BeaconCtrl S2S API</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Properties" name="task_Properties"></a>
+						<h2 class="task-title">Properties</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/beacons" title="beacons"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beacons">&nbsp;&nbsp;beacons</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Beacons fetched from the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSSet *beacons</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Methods" name="task_Methods"></a>
+						<h2 class="task-title">Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/beaconCtrlAdminWithCliendId:clientSecret:" title="beaconCtrlAdminWithCliendId:clientSecret:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/beaconCtrlAdminWithCliendId:clientSecret:">+&nbsp;beaconCtrlAdminWithCliendId:clientSecret:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The main setup method for BCLBeaconCtrlAdmin</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)beaconCtrlAdminWithCliendId:(NSString *)<em>clientId</em> clientSecret:(NSString *)<em>clientSecret</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>clientId</code></th>
+						<td><p>A client id obtained from the s2s API provider, used for authentication</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>clientSecret</code></th>
+						<td><p>A client secret obtained from the s2s API provider, used for authentication</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>An initialized instance of BCLBeaconCtrlAdmin</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchZonesAndBeacons:" title="fetchZonesAndBeacons:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchZonesAndBeacons:">&ndash;&nbsp;fetchZonesAndBeacons:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fethes beacons and zones from the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchZonesAndBeacons:(void ( ^ ) ( NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that is called after the fetch is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchZoneColors:" title="fetchZoneColors:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchZoneColors:">&ndash;&nbsp;fetchZoneColors:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fetch available zone colors from the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchZoneColors:(void ( ^ ) ( NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that is called after the fetch is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Each zone can have a color that is one the colors stored in the zoneColors property that is populated once this method is successfully called</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerAdminUserWithEmail:password:passwordConfirmation:completion:" title="registerAdminUserWithEmail:password:passwordConfirmation:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerAdminUserWithEmail:password:passwordConfirmation:completion:">&ndash;&nbsp;registerAdminUserWithEmail:password:passwordConfirmation:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Registers a new admin user on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)registerAdminUserWithEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em> passwordConfirmation:(NSString *)<em>passwordConfirmation</em> completion:(void ( ^ ) ( BOOL success , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>email</code></th>
+						<td><p>The new user&rsquo;s email</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>The new user&rsquo;s password</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>passwordConfirmation</code></th>
+						<td><p>The new user&rsquo;s password confirmation for verification</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion block that is called after the registration is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loginAdminUserWithEmail:password:completion:" title="loginAdminUserWithEmail:password:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loginAdminUserWithEmail:password:completion:">&ndash;&nbsp;loginAdminUserWithEmail:password:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Authenticates an existing admin user against the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)loginAdminUserWithEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em> completion:(void ( ^ ) ( BOOL success , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>email</code></th>
+						<td><p>Admin user&rsquo;s email</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>Admin user&rsquo;s password</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion block that is called after the authentication is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchTestApplicationCredentials:" title="fetchTestApplicationCredentials:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchTestApplicationCredentials:">&ndash;&nbsp;fetchTestApplicationCredentials:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fethes a cliend id and client secret for the currently logged in admin user&rsquo;s test application</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchTestApplicationCredentials:(void ( ^ ) ( NSString *applicationClientId , NSString *applicationClientSecret , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion block that is called after the fetch is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Every admin user has exactly one test application that monitors all the beacons and zones added to the admin user&rsquo;s account</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/createBeacon:testActionName:testActionTrigger:testActionAttributes:completion:" title="createBeacon:testActionName:testActionTrigger:testActionAttributes:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createBeacon:testActionName:testActionTrigger:testActionAttributes:completion:">&ndash;&nbsp;createBeacon:testActionName:testActionTrigger:testActionAttributes:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a beacon on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)createBeacon:(BCLBeacon *)<em>beacon</em> testActionName:(NSString *)<em>testActionName</em> testActionTrigger:(BCLEventType)<em>trigger</em> testActionAttributes:(NSArray *)<em>testActionAttributes</em> completion:(void ( ^ ) ( BCLBeacon *, NSError *))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>beacon</code></th>
+						<td><p>A beacon that will be created</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>testActionName</code></th>
+						<td><p>Name of the test action</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>testActionAttributes</code></th>
+						<td><p>Attributes of the test action</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that will be called after the creation is finished</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>testActionTrigger</code></th>
+						<td><p>Trigger of the test action</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>When creating a beacon, an admin SDK user can create the first test action. It will be added as a custom action with given attributes on the backend.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateBeacon:testActionName:testActionTrigger:testActionAttributes:completion:" title="updateBeacon:testActionName:testActionTrigger:testActionAttributes:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateBeacon:testActionName:testActionTrigger:testActionAttributes:completion:">&ndash;&nbsp;updateBeacon:testActionName:testActionTrigger:testActionAttributes:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Updates a beacon on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateBeacon:(BCLBeacon *)<em>beacon</em> testActionName:(NSString *)<em>testActionName</em> testActionTrigger:(BCLEventType)<em>trigger</em> testActionAttributes:(NSArray *)<em>testActionAttributes</em> completion:(void ( ^ ) ( BOOL success , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>beacon</code></th>
+						<td><p>A beacon that will be updated</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>testActionName</code></th>
+						<td><p>Name of the test action</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>testActionAttributes</code></th>
+						<td><p>Attributes of the test action</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that will be called after the update is finished</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>testActionTrigger</code></th>
+						<td><p>Trigger of the test action</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>When updating a beacon, an admin SDK user can create or update its test action. Any test action is added as a custom action with given attributes on the backend.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteBeacon:completion:" title="deleteBeacon:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteBeacon:completion:">&ndash;&nbsp;deleteBeacon:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Deletes a beacon on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)deleteBeacon:(BCLBeacon *)<em>beacon</em> completion:(void ( ^ ) ( BOOL success , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>beacon</code></th>
+						<td><p>A beacon that will be deleted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that will be called after the deletion is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/createZone:completion:" title="createZone:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createZone:completion:">&ndash;&nbsp;createZone:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a zone on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)createZone:(BCLZone *)<em>zone</em> completion:(void ( ^ ) ( BCLZone *newZone , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>zone</code></th>
+						<td><p>A zone that will be created</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that will be called after the creation is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateZone:completion:" title="updateZone:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateZone:completion:">&ndash;&nbsp;updateZone:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Updates a zone on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateZone:(BCLZone *)<em>zone</em> completion:(void ( ^ ) ( BOOL success , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>zone</code></th>
+						<td><p>A zone that will be updated</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that will be called after the update is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteZone:completion:" title="deleteZone:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteZone:completion:">&ndash;&nbsp;deleteZone:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Deletes a zone on the backend</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)deleteZone:(BCLZone *)<em>zone</em> completion:(void ( ^ ) ( BOOL success , NSError *error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>zone</code></th>
+						<td><p>A zone that will be deleted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>A completion handler that will be called after the deletion is finished</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeaconCtrlAdmin.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 UP-NEXT. All rights reserved. Updated: 2015-07-14</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
