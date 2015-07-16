@@ -73,7 +73,7 @@ BCLBeaconCtrlDelegate - this is a protocol that you'll implement in your interfa
 
 5. You can now start reacting to BCLBeaconCtrl actions in your delegate object. Some actions are handled automatically (refer to FAQ and docs for more info):
 
-
+```objective-c
 	- (void)closestObservedRangeDidChange:(BCLRange *)closestRange
 	{
 	   ///<YOUR CODE GOES HERE>
@@ -108,7 +108,7 @@ BCLBeaconCtrlDelegate - this is a protocol that you'll implement in your interfa
 	{
 	   ///<YOUR CODE GOES HERE>
 	}
-
+```
 
 6. You can use BCLBeaconCtrlAdmin to interact with BeaconCtrl S2S API. Just store a reference to a BCLBeaconCtrlAdmin object in a variable or property.
 7. Refer to BCLBeaconCtrlAdmin class documentation for detailed information about its usage.
