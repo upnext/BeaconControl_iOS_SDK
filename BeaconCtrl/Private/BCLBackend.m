@@ -66,7 +66,7 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
 
 + (NSString *) baseURLString
 {
-    return @"https://admin.beaconctrl.com/api/v1";
+    return @"http://beaconcontrol-admin.staging.up-next.io/api/v1";
 }
 
 - (NSDictionary *)authenticationParameters
