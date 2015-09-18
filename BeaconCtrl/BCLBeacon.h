@@ -74,6 +74,18 @@ extern NSString * const BCLBeaconTimerFireNotification;
 /// Beacon identifier assigned by the backend
 @property (strong) NSString *beaconIdentifier;
 
+/// Beacon's vendor (i.e. Kontakt.io, Estimote or other)
+@property (strong) NSString *vendor;
+
+/// Beacon's vendor-specific identifier
+@property (strong) NSString *vendorIdentifier;
+
+/// A flag stating whether a given beacon has outdated properties
+@property (nonatomic) BOOL needsCharacteristicsUpdate;
+
+/// A flag stating whether a given beacon is currently being updated
+@property (nonatomic) BOOL characteristicsAreBeingUpdated;
+
 /// Callback called when a beacon's range is entered
 @property (copy) void(^onEnterCallback)(BCLBeacon *beacon);
 

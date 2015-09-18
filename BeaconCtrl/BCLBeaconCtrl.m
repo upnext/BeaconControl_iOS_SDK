@@ -32,6 +32,8 @@
 
 #import "BCLActionHandlerFactory.h"
 
+#import "BCLKontaktIOBeaconConfigManager.h"
+
 #define BCLDelayEventTimeInterval 3
 
 NSInteger const BCLInvalidParametersErrorCode = -1;
@@ -51,7 +53,7 @@ static NSString * const monitoredRegionIdentifiersKey = @"monitoredRegionIdentif
 static NSString * const BCLBeaconCtrlCacheDirectoryName = @"BeaconCtrl";
 static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
-@interface BCLBeaconCtrl () <CLLocationManagerDelegate, CBCentralManagerDelegate, BCLBeaconRangingBatchDelegate>
+@interface BCLBeaconCtrl () <CLLocationManagerDelegate, CBCentralManagerDelegate, BCLBeaconRangingBatchDelegate, BCLKontaktIOBeaconConfigManagerDelegate>
 
 @property (strong) CLLocationManager *locationManager;
 @property (strong) CBCentralManager *bluetoothCentralManager;
@@ -70,6 +72,8 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
 @property (nonatomic, weak) BCLBeacon *cachedClosestBeacon;
 @property (nonatomic, weak) BCLZone *cachedClosestZone;
+
+@property (nonatomic, strong) BCLKontaktIOBeaconConfigManager *kontaktIOManager;
 
 @end
 
@@ -115,6 +119,8 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         beaconCtrl = [[BCLBeaconCtrl alloc] initWithClientId:clientId clientSecret:clientSecret pushEnvironment:pushEnvironment pushToken:pushToken];
         isRestoredFromCache = NO;
     }
+    
+    __weak typeof(self) weakSelf = self;
     
     void (^finishSetup)() = ^void() {
         if (completion) {
@@ -247,6 +253,10 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     if (authorizationStatus != kCLAuthorizationStatusNotDetermined && authorizationStatus != kCLAuthorizationStatusAuthorized && authorizationStatus != kCLAuthorizationStatusAuthorizedAlways && authorizationStatus != kCLAuthorizationStatusAuthorizedWhenInUse) {
         return NO;
     }
+    
+    self.kontaktIOManager = [[BCLKontaktIOBeaconConfigManager alloc] initWithApiKey:@"OHXvaKTLjLLzqMjrucTxbsQxQLASHzyV"];
+    self.kontaktIOManager.delegate = self;
+    [self.kontaktIOManager startManagement];
     
     return [self updateMonitoredBeacons];
 }
@@ -474,6 +484,45 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void)fetchUsersInRangesOfBeacons:(NSSet *)beacons zones:(NSSet *)zones completion:(void (^)(NSDictionary *, NSError *))completion
 {
     [self.backend fetchUsersInRangesOfBeacons:beacons zones:zones completion:completion];
+}
+
+#pragma mark - BCLKontaktIOBeaconConfigManagerDelegate
+
+- (void)kontaktIOBeaconManagerDidFetchBeaconsToUpdate:(BCLKontaktIOBeaconConfigManager *)manager
+{
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        if (beacon.vendorIdentifier && [manager.configsToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
+            beacon.needsCharacteristicsUpdate = YES;
+        }
+    }];
+}
+
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didStartUpdatingBeaconWithUniqueId:(NSString *)uniqueId
+{
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        NSLog(@"UniqueId: %@", beacon.vendorIdentifier);
+        if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
+            beacon.characteristicsAreBeingUpdated = YES;
+            *stop = YES;
+        }
+    }];
+
+}
+
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingBeaconWithUniqueId:(NSString *)uniqueId success:(BOOL)success
+{
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        NSLog(@"UniqueId: %@", beacon.vendorIdentifier);
+        if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
+            if (success) {
+                beacon.needsCharacteristicsUpdate = NO;
+            }
+            
+            beacon.characteristicsAreBeingUpdated = NO;
+            
+            *stop = YES;
+        }
+    }];
 }
 
 #pragma mark - Private

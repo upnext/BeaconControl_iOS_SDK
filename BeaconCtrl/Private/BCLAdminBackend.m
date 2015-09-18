@@ -28,7 +28,7 @@
 
 + (NSString *) baseURLString
 {
-    return @"https://admin.beaconctrl.com/s2s_api/v1";
+    return @"http://beaconcontrol-admin.staging.up-next.io/s2s_api/v1";
 }
 
 - (NSDictionary *)authenticationParameters

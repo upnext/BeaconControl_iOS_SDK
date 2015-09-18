@@ -79,6 +79,7 @@ const int kResetAccuracyReadoutsInterval = 60;
 - (id)copyWithZone:(NSZone *)zone
 {
     BCLBeacon *copyBeacon = [super copyWithZone:zone];
+
     copyBeacon.proximityUUID = self.proximityUUID;
     copyBeacon.major = self.major;
     copyBeacon.minor = self.minor;
@@ -95,6 +96,10 @@ const int kResetAccuracyReadoutsInterval = 60;
     copyBeacon.onEnterCallback = self.onEnterCallback;
     copyBeacon.onExitCallback = self.onExitCallback;
     copyBeacon.onChangeProximityCallback = self.onChangeProximityCallback;
+    copyBeacon.vendor = self.vendor;
+    copyBeacon.vendorIdentifier = self.vendorIdentifier;
+    copyBeacon.needsCharacteristicsUpdate = self.needsCharacteristicsUpdate;
+
     return copyBeacon;
 }
 
@@ -333,6 +338,12 @@ const int kResetAccuracyReadoutsInterval = 60;
         if (!self.proximityUUID) {
             @throw [NSException exceptionWithName:BCLInvalidBeaconIdentifierException reason:[NSString stringWithFormat:@"Defined beacon identifier '%@' is invalid", idString] userInfo:dictionary];
         }
+    }
+    
+    self.vendor = dictionary[@"vendor"];
+    
+    if (dictionary[@"unique_id"]) {
+        self.vendorIdentifier = dictionary[@"unique_id"];
     }
 }
 
