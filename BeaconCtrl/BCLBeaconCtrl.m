@@ -494,31 +494,67 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         if (beacon.vendorIdentifier && [manager.configsToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
             beacon.needsCharacteristicsUpdate = YES;
         }
+        if (beacon.vendorIdentifier && [manager.firmwaresToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
+            beacon.needsFirmwareUpdate = YES;
+        }
     }];
 }
 
 - (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didStartUpdatingBeaconWithUniqueId:(NSString *)uniqueId
 {
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
-        NSLog(@"UniqueId: %@", beacon.vendorIdentifier);
         if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.characteristicsAreBeingUpdated = YES;
             *stop = YES;
         }
     }];
-
 }
 
 - (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingBeaconWithUniqueId:(NSString *)uniqueId success:(BOOL)success
 {
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
-        NSLog(@"UniqueId: %@", beacon.vendorIdentifier);
         if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             if (success) {
                 beacon.needsCharacteristicsUpdate = NO;
             }
             
             beacon.characteristicsAreBeingUpdated = NO;
+            
+            *stop = YES;
+        }
+    }];
+}
+
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didStartUpdatingFirmwareForBeaconWithUniqueId:(NSString *)uniqueId
+{
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
+            beacon.firmwareUpdateProgress = 0;
+            *stop = YES;
+        }
+    }];
+}
+
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager isUpdatingFirmwareForBeaconWithUniqueId:(NSString *)uniqueId progress:(NSUInteger)progress
+{
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
+            beacon.firmwareUpdateProgress = progress;
+            NSLog(@"Updating firmware for beacon with uniqueId %@; progress: %lu", beacon.vendorIdentifier, progress);
+            *stop = YES;
+        }
+    }];
+}
+
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingFirmwareForBeaconWithUniqueId:(NSString *)uniqueId success:(BOOL)success
+{
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
+            if (success) {
+                beacon.needsFirmwareUpdate = NO;
+            }
+            
+            beacon.firmwareUpdateProgress = NSNotFound;
             
             *stop = YES;
         }

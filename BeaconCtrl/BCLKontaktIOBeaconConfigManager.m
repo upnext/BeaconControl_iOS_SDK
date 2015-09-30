@@ -14,12 +14,14 @@
 #import <KontaktSDK/KTKError.h>
 #import <KontaktSDK/KTKPagingBeacons.h>
 #import <KontaktSDK/KTKPagingConfigs.h>
+#import <KontaktSDK/KTKFirmware.h>
 
 @interface BCLKontaktIOBeaconConfigManager () <KTKBluetoothManagerDelegate>
 
 @property (nonatomic, strong) KTKClient *kontaktClient;
 @property (nonatomic, strong) KTKBluetoothManager *kontaktBluetoothManager;
 @property (nonatomic) BOOL isUpdatingBeacons;
+@property (nonatomic, strong) NSMutableDictionary *kontaktBeaconsDictionary;
 
 @end
 
@@ -44,22 +46,25 @@
 {
     NSError *error;
     
-    NSArray *configsToChangeArray = [self.kontaktClient configsPaged:[[KTKPagingConfigs alloc] initWithIndexStart:0 andMaxResults:200] forDevices:KTKDeviceTypeBeacon withError:&error];
-    
-    NSArray *kontaktBeacons = [self.kontaktClient beaconsPaged:[[KTKPagingBeacons alloc] initWithIndexStart:0 andMaxResults:200] withError:&error];
-    
-    [kontaktBeacons enumerateObjectsUsingBlock:^(KTKBeacon *beacon, NSUInteger idx, BOOL *stop) {
-        if ([beacon.uniqueID isEqualToString:@"em82"]) {
-            NSLog(@"%@", error);
-        }
-    }];
+    NSArray *configsToChangeArray = [self.kontaktClient configsPaged:[[KTKPagingConfigs alloc] initWithIndexStart:0 andMaxResults:1000] forDevices:KTKDeviceTypeBeacon withError:&error];
     
     [configsToChangeArray enumerateObjectsUsingBlock:^(KTKBeacon *beacon, NSUInteger idx, BOOL *stop) {
-        if ([beacon.uniqueID isEqualToString:@"em82"]) {
-            NSLog(@"");
-        }
         self.configsToUpdate[beacon.uniqueID] = beacon;
     }];
+    
+    NSArray *kontaktBeacons = [self.kontaktClient beaconsPaged:[[KTKPagingBeacons alloc] initWithIndexStart:0 andMaxResults:1000] withError:&error];
+    NSMutableArray *kontaktBeaconsUniqueIds = @[].mutableCopy;
+    
+    NSMutableDictionary *kontaktBeaconsDictionary = @{}.mutableCopy;
+    [kontaktBeacons enumerateObjectsUsingBlock:^(KTKBeacon *beacon, NSUInteger idx, BOOL *stop) {
+        [kontaktBeaconsUniqueIds addObject:beacon.uniqueID];
+        kontaktBeaconsDictionary[beacon.uniqueID] = beacon;
+    }];
+    
+    self.kontaktBeaconsDictionary = kontaktBeaconsDictionary;
+    
+    NSError *firmareUpdatesError;
+    self.firmwaresToUpdate = [self.kontaktClient firmwaresLatestForBeaconsUniqueIds:kontaktBeaconsUniqueIds.copy withError:&firmareUpdatesError].mutableCopy;
     
     [self.delegate kontaktIOBeaconManagerDidFetchBeaconsToUpdate:self];
     
@@ -84,8 +89,7 @@
     self.isUpdatingBeacons = YES;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^() {
         [devices enumerateObjectsUsingBlock:^(KTKBeaconDevice *beacon, BOOL *stop) {
-            NSLog(@"");
-            if ([self.configsToUpdate.allKeys containsObject:beacon.uniqueID]) {
+            if ([self.configsToUpdate.allKeys containsObject:beacon.uniqueID] || [self.firmwaresToUpdate.allKeys containsObject:beacon.uniqueID]) {
                 NSLog(@"Trying update kontakt.io beacon with uniqueId %@", beacon.uniqueID);
                 NSString *password;
                 NSString *masterPassword;
@@ -94,18 +98,76 @@
                 if (error) {
                     return;
                 }
-                if ([beacon connectWithPassword:password andError:&error]) {
-                    KTKBeacon *newConfig = self.configsToUpdate[beacon.uniqueID];
-                    NSError *updateError;
-                    BOOL success = [self updateKontaktBeaconDevice:beacon withNewConfig:newConfig error:&updateError];
-                    NSLog(@"Tried to update beacon device with uniqueId %@. Result: %lu", beacon.uniqueID, success);
-                } else {
-                    NSLog(@"Can't connect with beacon device with uniqueId %@", beacon.uniqueID);
+                
+                if ([self.configsToUpdate.allKeys containsObject:beacon.uniqueID]) {
+                    if ([beacon connectWithPassword:password andError:&error]) {
+                        KTKBeacon *newConfig = self.configsToUpdate[beacon.uniqueID];
+                        NSError *updateError;
+                        [self updateKontaktBeaconDevice:beacon withNewConfig:newConfig error:&updateError];
+                    }
+                }
+                
+                if ([self.firmwaresToUpdate.allKeys containsObject:beacon.uniqueID]) {
+                    KTKFirmware *newFirmware = self.firmwaresToUpdate[beacon.uniqueID];
+                    if ([beacon connectWithPassword:password andError:&error]) {
+                        NSError *firmwareUpdateError;
+                        [self updateFirmwareForKontaktBeaconDevice:beacon masterPassword:masterPassword newFirmware:newFirmware error:&firmwareUpdateError];
+                    }
                 }
             }
         }];
+
         self.isUpdatingBeacons = NO;
     });
+}
+
+- (BOOL)updateFirmwareForKontaktBeaconDevice:(KTKBeaconDevice *)beaconDevice masterPassword:(NSString *)masterPassword newFirmware:(KTKFirmware *)newFirmware error:(NSError **)error
+{
+    NSError *firmwareUpdateError = [beaconDevice updateFirmware:newFirmware usingMasterPassword:masterPassword progressHandler:^(KTKBeaconDeviceFirmwareUpdateState state, int progress) {
+        switch (state) {
+            case KTKBeaconDeviceFirmwareUpdateStatePreparing:
+            {
+                dispatch_async(dispatch_get_main_queue(), ^() {
+                    [self.delegate kontaktIOBeaconManager:self didStartUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID];
+                });
+                break;
+            }
+            case KTKBeaconDeviceFirmwareUpdateStateUploading:
+            {
+                dispatch_async(dispatch_get_main_queue(), ^() {
+                    [self.delegate kontaktIOBeaconManager:self isUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID progress:progress];
+                });
+                break;
+            }
+        }
+    }];
+    
+    if (firmwareUpdateError) {
+        dispatch_async(dispatch_get_main_queue(), ^() {
+            [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID success:NO];
+        });
+        return NO;
+    } KTKBeacon *beaconToUpdate = self.kontaktBeaconsDictionary[beaconDevice.uniqueID];
+    beaconToUpdate.firmware = newFirmware.version;
+    NSError *updateError;
+    
+    [self.kontaktClient beaconUpdate:beaconToUpdate withError:&updateError];
+    
+    if (updateError){
+        dispatch_async(dispatch_get_main_queue(), ^() {
+            [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID success:NO];
+        });
+        return NO;
+    }
+    
+    if (self.firmwaresToUpdate[beaconDevice.uniqueID]) {
+        [self.firmwaresToUpdate removeObjectForKey:beaconDevice.uniqueID];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^() {
+        [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID success:YES];
+    });
+    return YES;
 }
 
 - (BOOL)updateKontaktBeaconDevice:(KTKBeaconDevice *)beaconDevice withNewConfig:(KTKBeacon *)config error:(NSError **)error

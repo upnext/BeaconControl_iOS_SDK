@@ -99,6 +99,9 @@ const int kResetAccuracyReadoutsInterval = 60;
     copyBeacon.vendor = self.vendor;
     copyBeacon.vendorIdentifier = self.vendorIdentifier;
     copyBeacon.needsCharacteristicsUpdate = self.needsCharacteristicsUpdate;
+    copyBeacon.protocol = self.protocol;
+    copyBeacon.namespaceId = self.namespaceId;
+    copyBeacon.instanceId = self.instanceId;
 
     return copyBeacon;
 }
@@ -301,6 +304,7 @@ const int kResetAccuracyReadoutsInterval = 60;
 {
     self->_name = dictionary[@"name"]!=[NSNull null]?dictionary[@"name"]:nil;
     self->_beaconIdentifier = [dictionary[@"id"] description];
+    self->_protocol = [dictionary[@"protocol"] description];
     
     if (dictionary[@"location"] && dictionary[@"location"][@"lat"] != [NSNull null] && dictionary[@"location"][@"lng"] != [NSNull null]) {
         double lat = [dictionary[@"location"][@"lat"] doubleValue];
@@ -314,30 +318,54 @@ const int kResetAccuracyReadoutsInterval = 60;
         NSString *idString = [dictionary[@"proximity_id"] description];
         NSError *error = NULL;
         
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([\\w-]*)(\\+(\\d*)){0,1}(\\+(\\d*)){0,1}" options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
-        NSArray *matches =  [regex matchesInString:idString
-                                           options:0
-                                             range:NSMakeRange(0, [idString length])];
-        
-        NSTextCheckingResult *match = matches[0];
-        for (int idx = 1; idx < match.numberOfRanges; idx++) {
-            NSRange range = [match rangeAtIndex:idx];
-            if (range.location != NSNotFound && idx == 1) {
-                self.proximityUUID = [[NSUUID alloc] initWithUUIDString:[idString substringWithRange:range]];
+        if ([self->_protocol.lowercaseString isEqualToString:@"ibeacon"]) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([\\w-]*)(\\+(\\d*)){0,1}(\\+(\\d*)){0,1}" options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
+            NSArray *matches =  [regex matchesInString:idString
+                                               options:0
+                                                 range:NSMakeRange(0, [idString length])];
+            
+            NSTextCheckingResult *match = matches[0];
+            for (int idx = 1; idx < match.numberOfRanges; idx++) {
+                NSRange range = [match rangeAtIndex:idx];
+                if (range.location != NSNotFound && idx == 1) {
+                    self.proximityUUID = [[NSUUID alloc] initWithUUIDString:[idString substringWithRange:range]];
+                }
+                
+                if (range.location != NSNotFound && idx == 3) {
+                    self.major = @([[idString substringWithRange:range] integerValue]);
+                }
+                
+                if (range.location != NSNotFound && idx == 5) {
+                    self.minor = @([[idString substringWithRange:range] integerValue]);
+                }
             }
             
-            if (range.location != NSNotFound && idx == 3) {
-                self.major = @([[idString substringWithRange:range] integerValue]);
-            }
+        } else if ([self->_protocol.lowercaseString isEqualToString:@"eddystone"]) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([\\w-]*)\\+([\\w-]*)\\+([\\w-]*)" options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
+            NSArray *matches =  [regex matchesInString:idString
+                                               options:0
+                                                 range:NSMakeRange(0, [idString length])];
             
-            if (range.location != NSNotFound && idx == 5) {
-                self.minor = @([[idString substringWithRange:range] integerValue]);
+            NSTextCheckingResult *match = matches[0];
+            for (int idx = 1; idx < match.numberOfRanges; idx++) {
+                NSRange range = [match rangeAtIndex:idx];
+                if (range.location != NSNotFound && idx == 1) {
+                    self.proximityUUID = [[NSUUID alloc] initWithUUIDString:[idString substringWithRange:range]];
+                }
+                
+                if (range.location != NSNotFound && idx == 3) {
+                    self.namespaceId = [idString substringWithRange:range];
+                }
+                
+                if (range.location != NSNotFound && idx == 5) {
+                    self.instanceId = [idString substringWithRange:range];
+                }
             }
         }
         
-        if (!self.proximityUUID) {
-            @throw [NSException exceptionWithName:BCLInvalidBeaconIdentifierException reason:[NSString stringWithFormat:@"Defined beacon identifier '%@' is invalid", idString] userInfo:dictionary];
-        }
+//        if (!self.proximityUUID) {
+//            @throw [NSException exceptionWithName:BCLInvalidBeaconIdentifierException reason:[NSString stringWithFormat:@"Defined beacon identifier '%@' is invalid", idString] userInfo:dictionary];
+//        }
     }
     
     self.vendor = dictionary[@"vendor"];

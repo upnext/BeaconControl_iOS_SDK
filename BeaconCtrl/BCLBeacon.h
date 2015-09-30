@@ -32,14 +32,23 @@ extern NSString * const BCLBeaconTimerFireNotification;
 
 /** @name Properties */
 
+/// Protocol of a beacon (iBeacon or Eddystone)
+@property (readwrite, nonatomic, strong) NSString *protocol;
+
 /// UUID value of a beacon
 @property (readwrite, nonatomic, strong) NSUUID *proximityUUID;
 
-/// Major value of a beacon
+/// Major value of an iBeacon
 @property (readwrite, nonatomic, strong) NSNumber *major;
 
-/// Minor value of a beacon
+/// Minor value of an iBeacon
 @property (readwrite, nonatomic, strong) NSNumber *minor;
+
+/// Namespace value of an Eddystone beacon
+@property (readwrite, nonatomic, strong) NSString *namespaceId;
+
+/// Intance id of an Eddystone beacon
+@property (readwrite, nonatomic, strong) NSString *instanceId;
 
 /// Proximity of a beacon to a device running the SDK described as a CLProximity constant
 @property (readwrite, nonatomic, assign) CLProximity proximity;
@@ -85,6 +94,12 @@ extern NSString * const BCLBeaconTimerFireNotification;
 
 /// A flag stating whether a given beacon is currently being updated
 @property (nonatomic) BOOL characteristicsAreBeingUpdated;
+
+/// A flag stating whether a given beacon has outdated firmware
+@property (nonatomic) BOOL needsFirmwareUpdate;
+
+/// Firmware update progress
+@property (nonatomic) NSUInteger firmwareUpdateProgress;
 
 /// Callback called when a beacon's range is entered
 @property (copy) void(^onEnterCallback)(BCLBeacon *beacon);
