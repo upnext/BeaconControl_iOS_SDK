@@ -12,6 +12,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <SAMCache/SAMCache.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <KontaktSDK/KTKBeacon.h>
+#import <KontaktSDK/KTKBeaconDevice.h>
 
 #import "BCLConfiguration.h"
 #import "SAMCache+BeaconCtrl.h"
@@ -488,7 +490,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
 #pragma mark - BCLKontaktIOBeaconConfigManagerDelegate
 
-- (void)kontaktIOBeaconManagerDidFetchBeaconsToUpdate:(BCLKontaktIOBeaconConfigManager *)manager
+- (void)kontaktIOBeaconManagerDidFetchKontaktIOBeacons:(BCLKontaktIOBeaconConfigManager *)manager
 {
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if (beacon.vendorIdentifier && [manager.configsToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
@@ -496,6 +498,27 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         }
         if (beacon.vendorIdentifier && [manager.firmwaresToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
             beacon.needsFirmwareUpdate = YES;
+        }
+        
+        if (beacon.vendorIdentifier && [manager.kontaktBeaconsDictionary.allKeys containsObject:beacon.vendorIdentifier]) {
+            KTKBeacon *kontaktBeacon = manager.kontaktBeaconsDictionary[beacon.vendorIdentifier];
+            beacon.vendorFirmwareVersion = kontaktBeacon.firmware;
+        }
+    }];
+}
+
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didMonitorBeaconDevices:(NSArray *)devices
+{
+    NSMutableDictionary *devicesDictionary = @{}.mutableCopy;
+    [devices enumerateObjectsUsingBlock:^(KTKBeaconDevice *device, NSUInteger idx, BOOL *stop) {
+        devicesDictionary[device.uniqueID] = device;
+    }];
+
+    __block KTKBeaconDevice *device;
+    [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
+        if (beacon.vendorIdentifier && [devicesDictionary.allKeys containsObject:beacon.vendorIdentifier]) {
+            device = devicesDictionary[beacon.vendorIdentifier];
+            beacon.batteryLevel = device.batteryLevel;
         }
     }];
 }

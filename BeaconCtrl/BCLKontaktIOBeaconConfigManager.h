@@ -12,7 +12,8 @@
 
 @protocol BCLKontaktIOBeaconConfigManagerDelegate <NSObject>
 
-- (void)kontaktIOBeaconManagerDidFetchBeaconsToUpdate:(BCLKontaktIOBeaconConfigManager *)manager;
+- (void)kontaktIOBeaconManagerDidFetchKontaktIOBeacons:(BCLKontaktIOBeaconConfigManager *)manager;
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didMonitorBeaconDevices:(NSArray *)devices;
 - (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didStartUpdatingBeaconWithUniqueId:(NSString *)uniqueId;
 - (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingBeaconWithUniqueId:(NSString *)uniqueId success:(BOOL)success;
 - (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didStartUpdatingFirmwareForBeaconWithUniqueId:(NSString *)uniqueId;
@@ -28,6 +29,8 @@
 @property (nonatomic, copy) NSMutableDictionary *configsToUpdate;
 
 @property (nonatomic, copy) NSMutableDictionary *firmwaresToUpdate;
+
+@property (nonatomic, strong) NSMutableDictionary *kontaktBeaconsDictionary;
 
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 

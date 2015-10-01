@@ -21,7 +21,6 @@
 @property (nonatomic, strong) KTKClient *kontaktClient;
 @property (nonatomic, strong) KTKBluetoothManager *kontaktBluetoothManager;
 @property (nonatomic) BOOL isUpdatingBeacons;
-@property (nonatomic, strong) NSMutableDictionary *kontaktBeaconsDictionary;
 
 @end
 
@@ -66,7 +65,7 @@
     NSError *firmareUpdatesError;
     self.firmwaresToUpdate = [self.kontaktClient firmwaresLatestForBeaconsUniqueIds:kontaktBeaconsUniqueIds.copy withError:&firmareUpdatesError].mutableCopy;
     
-    [self.delegate kontaktIOBeaconManagerDidFetchBeaconsToUpdate:self];
+    [self.delegate kontaktIOBeaconManagerDidFetchKontaktIOBeacons:self];
     
     [self.kontaktBluetoothManager startFindingDevices];
 }
@@ -79,6 +78,8 @@
     if (self.isUpdatingBeacons) {
         return;
     }
+    
+    [self.delegate kontaktIOBeaconManager:self didMonitorBeaconDevices:devices];
     [self updateKontaktBeaconDevices:devices];
 }
 
