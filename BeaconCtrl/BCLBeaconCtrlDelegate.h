@@ -70,4 +70,14 @@
  */
 - (void) currentZoneDidChange:(BCLZone *)currentZone;
 
+- (void) beaconsPropertiesUpdateDidStart:(BCLBeacon *)beacon;
+
+- (void) beaconsPropertiesUpdateDidFinish:(BCLBeacon *)beacon success:(BOOL)success;
+
+- (void) beaconsFirmwareUpdateDidStart:(BCLBeacon *)beacon;
+
+- (void) beaconsFirmwareUpdateDidProgress:(BCLBeacon *)beacon progress:(NSUInteger)progress;
+
+- (void) beaconsFirmwareUpdateDidFinish:(BCLBeacon *)beacon success:(BOOL)success;
+
 @end

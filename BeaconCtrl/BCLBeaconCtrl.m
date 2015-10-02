@@ -315,7 +315,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             [self.locationManager startMonitoringForRegion:beaconRegion];
         }
         
-        if (![self.locationManager.rangedRegions containsObject:beaconRegion]) {
+        if (beaconRegion && ![self.locationManager.rangedRegions containsObject:beaconRegion]) {
             [self.locationManager startRangingBeaconsInRegion:beaconRegion];
         }
         
@@ -473,6 +473,20 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     __weak typeof(self) weakSelf = self;
     [self.backend fetchConfiguration:^(BCLConfiguration *configuration, NSError *error) {
         if (configuration) {
+            if (weakSelf.configuration) {
+                [weakSelf.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon  *oldBeacon, BOOL * _Nonnull oldStop) {
+                    [configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon  *newBeacon, BOOL * _Nonnull newStop) {
+                        if ([oldBeacon.beaconIdentifier isEqualToString:newBeacon.beaconIdentifier]) {
+                            newBeacon.needsFirmwareUpdate = oldBeacon.needsFirmwareUpdate;
+                            newBeacon.firmwareUpdateProgress = oldBeacon.firmwareUpdateProgress;
+                            newBeacon.needsCharacteristicsUpdate = oldBeacon.needsFirmwareUpdate;
+                            newBeacon.vendorFirmwareVersion = oldBeacon.vendorFirmwareVersion;
+                            *newStop = YES;
+                        }
+                    }];
+                }];
+            }
+            
             weakSelf.configuration = configuration;
             weakSelf.observedBeaconsPicker = [[BCLObservedBeaconsPicker alloc] initWithBeacons:weakSelf.configuration.beacons andZones:weakSelf.configuration.zones];
         }
@@ -528,6 +542,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.characteristicsAreBeingUpdated = YES;
+            [self.delegate beaconsPropertiesUpdateDidStart:beacon];
             *stop = YES;
         }
     }];
@@ -542,6 +557,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             }
             
             beacon.characteristicsAreBeingUpdated = NO;
+            [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
             
             *stop = YES;
         }
@@ -553,6 +569,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.firmwareUpdateProgress = 0;
+            [self.delegate beaconsFirmwareUpdateDidStart:beacon];
             *stop = YES;
         }
     }];
@@ -563,6 +580,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if ([beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.firmwareUpdateProgress = progress;
+            [self.delegate beaconsFirmwareUpdateDidProgress:beacon progress:progress];
             NSLog(@"Updating firmware for beacon with uniqueId %@; progress: %lu", beacon.vendorIdentifier, progress);
             *stop = YES;
         }
@@ -578,6 +596,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             }
             
             beacon.firmwareUpdateProgress = NSNotFound;
+            [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
             
             *stop = YES;
         }
