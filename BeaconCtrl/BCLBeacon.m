@@ -102,6 +102,10 @@ const int kResetAccuracyReadoutsInterval = 60;
     copyBeacon.protocol = self.protocol;
     copyBeacon.namespaceId = self.namespaceId;
     copyBeacon.instanceId = self.instanceId;
+    copyBeacon.vendorFirmwareVersion = self.vendorFirmwareVersion;
+    copyBeacon.batteryLevel = self.batteryLevel;
+    copyBeacon.transmissionInterval = self.transmissionInterval;
+    copyBeacon.transmissionPower = self.transmissionPower;
 
     return copyBeacon;
 }

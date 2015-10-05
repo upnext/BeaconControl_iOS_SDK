@@ -92,6 +92,12 @@ extern NSString * const BCLBeaconTimerFireNotification;
 /// Beacon's vendor-specific firmware version
 @property (strong) NSString *vendorFirmwareVersion;
 
+/// Transmission power for a beacon. May be NSNotFound, if vendor is unknown
+@property (nonatomic) NSUInteger transmissionPower;
+
+/// Transmission interval for a beacon. May be NSNotFound, if vendor is unknown
+@property (nonatomic) NSUInteger transmissionInterval;
+
 /// Battery level for a beacon. May be NSNotFound, if vendor is unknown
 @property (nonatomic) NSUInteger batteryLevel;
 

@@ -315,11 +315,13 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             [self.locationManager startMonitoringForRegion:beaconRegion];
         }
         
-        if (beaconRegion && ![self.locationManager.rangedRegions containsObject:beaconRegion]) {
-            [self.locationManager startRangingBeaconsInRegion:beaconRegion];
+        if (beaconRegion) {
+            if (![self.locationManager.rangedRegions containsObject:beaconRegion]) {
+                [self.locationManager startRangingBeaconsInRegion:beaconRegion];
+            }
+            
+            [monitoredRegionIdentifiers addObject:beaconRegion.identifier];
         }
-        
-        [monitoredRegionIdentifiers addObject:beaconRegion.identifier];
     }
     
     // should I refresh observable regions?
@@ -481,6 +483,9 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
                             newBeacon.firmwareUpdateProgress = oldBeacon.firmwareUpdateProgress;
                             newBeacon.needsCharacteristicsUpdate = oldBeacon.needsFirmwareUpdate;
                             newBeacon.vendorFirmwareVersion = oldBeacon.vendorFirmwareVersion;
+                            newBeacon.batteryLevel = oldBeacon.batteryLevel;
+                            newBeacon.transmissionPower = oldBeacon.transmissionPower;
+                            newBeacon.transmissionInterval = oldBeacon.transmissionInterval;
                             *newStop = YES;
                         }
                     }];
@@ -516,7 +521,8 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         
         if (beacon.vendorIdentifier && [manager.kontaktBeaconsDictionary.allKeys containsObject:beacon.vendorIdentifier]) {
             KTKBeacon *kontaktBeacon = manager.kontaktBeaconsDictionary[beacon.vendorIdentifier];
-            beacon.vendorFirmwareVersion = kontaktBeacon.firmware;
+            beacon.transmissionPower = kontaktBeacon.power.integerValue;
+            beacon.transmissionInterval = kontaktBeacon.interval.integerValue;
         }
     }];
 }
@@ -533,6 +539,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         if (beacon.vendorIdentifier && [devicesDictionary.allKeys containsObject:beacon.vendorIdentifier]) {
             device = devicesDictionary[beacon.vendorIdentifier];
             beacon.batteryLevel = device.batteryLevel;
+            beacon.vendorFirmwareVersion = device.firmwareVersion.stringValue;
         }
     }];
 }
