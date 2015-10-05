@@ -473,15 +473,18 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void)fetchConfiguration:(void(^)(NSError *error))completion;
 {
     __weak typeof(self) weakSelf = self;
+    
+    BCLConfiguration *oldConfiguration = self.configuration;
+    
     [self.backend fetchConfiguration:^(BCLConfiguration *configuration, NSError *error) {
         if (configuration) {
             if (weakSelf.configuration) {
-                [weakSelf.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon  *oldBeacon, BOOL * _Nonnull oldStop) {
+                [oldConfiguration.beacons enumerateObjectsUsingBlock:^(BCLBeacon  *oldBeacon, BOOL * _Nonnull oldStop) {
                     [configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon  *newBeacon, BOOL * _Nonnull newStop) {
-                        if ([oldBeacon.beaconIdentifier isEqualToString:newBeacon.beaconIdentifier]) {
+                        if ([oldBeacon.beaconIdentifier isEqualToString:newBeacon.beaconIdentifier]) {                            
                             newBeacon.needsFirmwareUpdate = oldBeacon.needsFirmwareUpdate;
                             newBeacon.firmwareUpdateProgress = oldBeacon.firmwareUpdateProgress;
-                            newBeacon.needsCharacteristicsUpdate = oldBeacon.needsFirmwareUpdate;
+                            newBeacon.needsCharacteristicsUpdate = oldBeacon.needsCharacteristicsUpdate;
                             newBeacon.vendorFirmwareVersion = oldBeacon.vendorFirmwareVersion;
                             newBeacon.batteryLevel = oldBeacon.batteryLevel;
                             newBeacon.transmissionPower = oldBeacon.transmissionPower;
