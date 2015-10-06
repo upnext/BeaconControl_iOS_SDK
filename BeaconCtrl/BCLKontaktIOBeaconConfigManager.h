@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class BCLKontaktIOBeaconConfigManager;
+@class KTKBeacon;
 
 @protocol BCLKontaktIOBeaconConfigManagerDelegate <NSObject>
 
@@ -35,5 +36,7 @@
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 
 - (void)startManagement;
+
+- (NSArray *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon;
 
 @end

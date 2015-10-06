@@ -70,6 +70,37 @@
     [self.kontaktBluetoothManager startFindingDevices];
 }
 
+- (NSArray *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon
+{
+    NSMutableArray *fieldsToUpdate = @[].mutableCopy;
+    
+    KTKBeacon *config = self.configsToUpdate[beacon.uniqueID];
+    
+    if (config) {
+        if (config.interval) {
+            [fieldsToUpdate addObject:@"interval"];
+        }
+        
+        if (config.power) {
+            [fieldsToUpdate addObject:@"power"];
+        }
+        
+        if (config.proximity) {
+            [fieldsToUpdate addObject:@"proximity"];
+        }
+        
+        if (config.major) {
+            [fieldsToUpdate addObject:@"major"];
+        }
+        
+        if (config.minor) {
+            [fieldsToUpdate addObject:@"minor"];
+        }
+    }
+    
+    return fieldsToUpdate.copy;
+}
+
 #pragma mark - KTKBluetoothManagerDelegate
 
 - (void)bluetoothManager:(KTKBluetoothManager *)bluetoothManager didChangeDevices:(NSSet *)devices

@@ -515,17 +515,21 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void)kontaktIOBeaconManagerDidFetchKontaktIOBeacons:(BCLKontaktIOBeaconConfigManager *)manager
 {
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
-        if (beacon.vendorIdentifier && [manager.configsToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
-            beacon.needsCharacteristicsUpdate = YES;
-        }
-        if (beacon.vendorIdentifier && [manager.firmwaresToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
-            beacon.needsFirmwareUpdate = YES;
-        }
-        
-        if (beacon.vendorIdentifier && [manager.kontaktBeaconsDictionary.allKeys containsObject:beacon.vendorIdentifier]) {
-            KTKBeacon *kontaktBeacon = manager.kontaktBeaconsDictionary[beacon.vendorIdentifier];
-            beacon.transmissionPower = kontaktBeacon.power.integerValue;
-            beacon.transmissionInterval = kontaktBeacon.interval.integerValue;
+        if (beacon.vendorIdentifier) {
+            if ([manager.configsToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
+                beacon.needsCharacteristicsUpdate = YES;
+                beacon.fieldsToUpdate = [manager fieldsToUpdateForKontaktBeacon:manager.configsToUpdate[beacon.vendorIdentifier]];
+            }
+            
+            if ([manager.firmwaresToUpdate.allKeys containsObject:beacon.vendorIdentifier]) {
+                beacon.needsFirmwareUpdate = YES;
+            }
+            
+            if ([manager.kontaktBeaconsDictionary.allKeys containsObject:beacon.vendorIdentifier]) {
+                KTKBeacon *kontaktBeacon = manager.kontaktBeaconsDictionary[beacon.vendorIdentifier];
+                beacon.transmissionPower = kontaktBeacon.power.integerValue;
+                beacon.transmissionInterval = kontaktBeacon.interval.integerValue;
+            }
         }
     }];
 }
