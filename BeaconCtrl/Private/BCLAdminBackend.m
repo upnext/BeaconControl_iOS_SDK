@@ -226,6 +226,10 @@
     if (beacon.zone) {
         beaconDict[@"zone_id"] = beacon.zone.zoneIdentifier;
     }
+
+    if (beacon.vendor) {
+        beaconDict[@"vendor"] = beacon.vendor;
+    }
     
     if (testActionName) {
         beaconDict[@"activity"] = @{
@@ -323,6 +327,10 @@
         if (beacon.location.floor) {
             beaconDict[@"floor"] = beacon.location.floor;
         }
+    }
+
+    if (beacon.vendor) {
+        beaconDict[@"vendor"] = beacon.vendor;
     }
     
     if (beacon.zone) {
