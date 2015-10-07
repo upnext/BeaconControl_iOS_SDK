@@ -139,7 +139,7 @@
         return;
     }
     
-    [self.delegate kontaktIOBeaconManager:self didMonitorBeaconDevices:devices];
+    [self.delegate kontaktIOBeaconManager:self didMonitorBeaconDevices:[devices allObjects]];
     [self updateKontaktBeaconDevices:devices];
 }
 
@@ -165,6 +165,7 @@
                         KTKBeacon *newConfig = self.configsToUpdate[beacon.uniqueID];
                         NSError *updateError;
                         [self updateKontaktBeaconDevice:beacon withNewConfig:newConfig error:&updateError];
+                        [beacon disconnect];
                     }
                 }
                 
@@ -173,6 +174,7 @@
                     if ([beacon connectWithPassword:password andError:&error]) {
                         NSError *firmwareUpdateError;
                         [self updateFirmwareForKontaktBeaconDevice:beacon masterPassword:masterPassword newFirmware:newFirmware error:&firmwareUpdateError];
+                        [beacon disconnect];
                     }
                 }
             }
@@ -289,8 +291,9 @@
     if (success) {
         NSError *updateError;
         success = [self.kontaktClient beaconUpdate:config withError:&updateError];
-        if (success) {
+        if (!success) {
             *error = updateError;
+            NSLog(@"There was an error while trying to update a kontakt.io beacon in kontakt.io panel: %@", updateError);
         } else if (self.configsToUpdate[beaconDevice.uniqueID]) {
             [self.configsToUpdate removeObjectForKey:beaconDevice.uniqueID];
         }

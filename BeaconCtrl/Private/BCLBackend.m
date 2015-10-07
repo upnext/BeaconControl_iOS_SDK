@@ -155,6 +155,64 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
     [task resume];
 }
 
+- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *))completion
+{
+    if (!self.clientId || !self.clientSecret) {
+        if (completion) {
+            completion([NSError errorWithDomain:BCLErrorDomain code:BCLInvalidParametersErrorCode userInfo:@{NSLocalizedDescriptionKey: @"Invalid backend integration"}]);
+        }
+        return;
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@/beacons/%@/sync", [BCLBackend baseURLString], beacon.beaconIdentifier];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [self setupURLRequest:request];
+    request.HTTPMethod = @"PUT";
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                      
+                                      if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
+                                          if (processingError) {
+                                              if(completion) completion(processingError);
+                                              return;
+                                          }
+                                          
+                                          [self retrySelector:@selector(syncBeacon:completion:) sender:self parameters:@[beacon, completion]];
+                                      }]) {
+                                          return;
+                                      }
+                                      
+                                      if (error || ![httpResponse isSuccess]) {
+                                          if (completion) {
+                                              completion(error ?: [NSError errorWithDomain:BCLErrorDomain code:BCLErrorHTTPError userInfo:@{NSLocalizedDescriptionKey: [httpResponse description]}]);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      NSError *jsonError = nil;
+                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      if (!responseDictionary && jsonError) {
+                                          if (completion) {
+                                              completion(jsonError);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      [beacon updatePropertiesFromDictionary:responseDictionary];
+                                      
+                                      if (completion) {
+                                          completion(nil);
+                                      }
+                                  }];
+    [task resume];
+}
+
 - (void) sendEvents:(NSArray *)events completion:(void(^)(NSError *error))completion
 {
     if (!self.clientId || !self.clientSecret) {

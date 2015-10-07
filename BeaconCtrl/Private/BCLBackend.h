@@ -23,6 +23,7 @@
 - (instancetype) initWithClientId:(NSString *)clientId clientSecret:(NSString *)clientSecret pushEnvironment:(NSString *)pushEnvironment pushToken:(NSString *)pushToken;
 
 - (void) fetchConfiguration:(void(^)(BCLConfiguration *configuration, NSError *error))completion;
+- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *error))completion;
 - (void) sendEvents:(NSArray *)events completion:(void(^)(NSError *error))completion;
 - (void) fetchUsersInRangesOfBeacons:(NSSet *)beacons zones:(NSSet *)zones completion:(void (^)(NSDictionary *result, NSError *error))completion;
 
