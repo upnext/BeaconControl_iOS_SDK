@@ -374,7 +374,7 @@ const int kResetAccuracyReadoutsInterval = 60;
     
     self.vendor = dictionary[@"vendor"];
     
-    if (dictionary[@"unique_id"]) {
+    if (dictionary[@"unique_id"] && dictionary[@"unique_id"] != [NSNull null]) {
         self.vendorIdentifier = dictionary[@"unique_id"];
     }
 }

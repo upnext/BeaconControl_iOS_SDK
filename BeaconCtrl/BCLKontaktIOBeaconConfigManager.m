@@ -41,17 +41,32 @@
     return self;
 }
 
-- (void)startManagement
+- (void)fetchConfiguration:(void (^)(NSError *))completion
 {
     NSError *error;
     
     NSArray *configsToChangeArray = [self.kontaktClient configsPaged:[[KTKPagingConfigs alloc] initWithIndexStart:0 andMaxResults:1000] forDevices:KTKDeviceTypeBeacon withError:&error];
+    
+    if (error) {
+        if (completion) {
+            completion(error);
+        }
+        return;
+    }
     
     [configsToChangeArray enumerateObjectsUsingBlock:^(KTKBeacon *beacon, NSUInteger idx, BOOL *stop) {
         self.configsToUpdate[beacon.uniqueID] = beacon;
     }];
     
     NSArray *kontaktBeacons = [self.kontaktClient beaconsPaged:[[KTKPagingBeacons alloc] initWithIndexStart:0 andMaxResults:1000] withError:&error];
+    
+    if (error) {
+        if (completion) {
+            completion(error);
+        }
+        return;
+    }
+    
     NSMutableArray *kontaktBeaconsUniqueIds = @[].mutableCopy;
     
     NSMutableDictionary *kontaktBeaconsDictionary = @{}.mutableCopy;
@@ -65,8 +80,22 @@
     NSError *firmareUpdatesError;
     self.firmwaresToUpdate = [self.kontaktClient firmwaresLatestForBeaconsUniqueIds:kontaktBeaconsUniqueIds.copy withError:&firmareUpdatesError].mutableCopy;
     
+    if (firmareUpdatesError) {
+        if (completion) {
+            completion(firmareUpdatesError);
+        }
+        return;
+    }
+    
     [self.delegate kontaktIOBeaconManagerDidFetchKontaktIOBeacons:self];
     
+    if (completion) {
+        completion(nil);
+    }
+}
+
+- (void)startManagement
+{
     [self.kontaktBluetoothManager startFindingDevices];
 }
 

@@ -35,6 +35,8 @@
 
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 
+- (void)fetchConfiguration:(void(^)(NSError *error))completion;
+
 - (void)startManagement;
 
 - (NSArray *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon;
