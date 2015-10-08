@@ -507,7 +507,10 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
                         completion(kontaktIOError);
                     }
                 }];
+            } else if (completion) {
+                completion(error);
             }
+
             return;
         }
         
