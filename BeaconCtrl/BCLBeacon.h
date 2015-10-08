@@ -104,8 +104,8 @@ extern NSString * const BCLBeaconTimerFireNotification;
 /// A flag stating whether a given beacon has outdated properties
 @property (nonatomic) BOOL needsCharacteristicsUpdate;
 
-/// An array of fields to update. May be nil for beacons with an unknown vendor
-@property (nonatomic, strong) NSArray *fieldsToUpdate;
+/// A dictionary of fields to update with property names as keys and new values as values. May be nil for beacons with an unknown vendor
+@property (nonatomic, strong) NSDictionary *fieldsToUpdate;
 
 /// A flag stating whether a given beacon is currently being updated
 @property (nonatomic) BOOL characteristicsAreBeingUpdated;

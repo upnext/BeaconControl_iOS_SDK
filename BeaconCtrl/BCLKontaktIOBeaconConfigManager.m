@@ -99,31 +99,31 @@
     [self.kontaktBluetoothManager startFindingDevices];
 }
 
-- (NSArray *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon
+- (NSDictionary *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon
 {
-    NSMutableArray *fieldsToUpdate = @[].mutableCopy;
+    NSMutableDictionary *fieldsToUpdate = @{}.mutableCopy;
     
     KTKBeacon *config = self.configsToUpdate[beacon.uniqueID];
     
     if (config) {
         if (config.interval) {
-            [fieldsToUpdate addObject:@"interval"];
+            fieldsToUpdate[@"interval"] = config.interval;
         }
         
         if (config.power) {
-            [fieldsToUpdate addObject:@"power"];
+            fieldsToUpdate[@"power"] = config.power;
         }
         
         if (config.proximity) {
-            [fieldsToUpdate addObject:@"proximity"];
+            fieldsToUpdate[@"proximity"] = config.proximity;
         }
         
         if (config.major) {
-            [fieldsToUpdate addObject:@"major"];
+            fieldsToUpdate[@"major"] = config.major;
         }
         
         if (config.minor) {
-            [fieldsToUpdate addObject:@"minor"];
+            fieldsToUpdate[@"minor"] = config.minor;
         }
     }
     
