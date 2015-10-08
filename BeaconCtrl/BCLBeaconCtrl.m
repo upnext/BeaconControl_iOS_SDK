@@ -256,10 +256,6 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         return NO;
     }
     
-    if (self.kontaktIOManager) {
-        [self.kontaktIOManager startManagement];
-    }
-    
     return [self updateMonitoredBeacons];
 }
 
@@ -501,6 +497,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             if (configuration.kontaktIOAPIKey) {
                 self.kontaktIOManager = [[BCLKontaktIOBeaconConfigManager alloc] initWithApiKey:configuration.kontaktIOAPIKey];
                 self.kontaktIOManager.delegate = self;
+                [self.kontaktIOManager startManagement];
                 
                 [self.kontaktIOManager fetchConfiguration:^(NSError *kontaktIOError) {
                     if (completion) {
