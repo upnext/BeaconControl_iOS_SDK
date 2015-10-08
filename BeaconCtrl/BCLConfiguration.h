@@ -29,6 +29,9 @@
 /// Fetched zones. A set of CTLZone objects
 @property (strong, nonatomic, readonly) NSSet *zones;
 
+/// Kontakt.io API key or nil if the kontakt.io add-on is not switched on
+@property (nonatomic, copy, readonly) NSString *kontaktIOAPIKey;
+
 /** @name Methods */
 
 /*!

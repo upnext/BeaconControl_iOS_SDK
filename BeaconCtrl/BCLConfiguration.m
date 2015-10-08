@@ -19,6 +19,7 @@
 @property (strong, nonatomic, readwrite) NSSet <BCLExtension> *extensions;
 @property (strong, nonatomic, readwrite) NSSet *beacons;
 @property (strong, nonatomic, readwrite) NSSet *zones;
+@property (copy, nonatomic, readwrite) NSString *kontaktIOAPIKey;
 @end
 
 @implementation BCLConfiguration
@@ -118,6 +119,10 @@
     
     self.beacons = [beaconsSet copy];
     self.zones = [zonesSet copy];
+    
+    if (configurationDictionary[@"kontakt_api_key"] != [NSNull null] && ![configurationDictionary[@"kontakt_api_key"] isEqualToString:@""]) {
+        self.kontaktIOAPIKey = configurationDictionary[@"kontakt_api_key"];
+    }
     
     return YES;
 }

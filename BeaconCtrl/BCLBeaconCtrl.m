@@ -256,7 +256,10 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         return NO;
     }
     
-    [self.kontaktIOManager startManagement];
+    if (self.kontaktIOManager) {
+        [self.kontaktIOManager startManagement];
+    }
+    
     return [self updateMonitoredBeacons];
 }
 
@@ -495,14 +498,17 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             weakSelf.configuration = configuration;
             weakSelf.observedBeaconsPicker = [[BCLObservedBeaconsPicker alloc] initWithBeacons:weakSelf.configuration.beacons andZones:weakSelf.configuration.zones];
             
-            [self.kontaktIOManager fetchConfiguration:^(NSError *kontaktIOError) {
-                if (kontaktIOError) {
+            if (configuration.kontaktIOAPIKey) {
+                self.kontaktIOManager = [[BCLKontaktIOBeaconConfigManager alloc] initWithApiKey:configuration.kontaktIOAPIKey];
+                self.kontaktIOManager.delegate = self;
+                
+                [self.kontaktIOManager fetchConfiguration:^(NSError *kontaktIOError) {
                     if (completion) {
                         completion(kontaktIOError);
                     }
-                    return;
-                }
-            }];
+                }];
+            }
+            return;
         }
         
         if (completion) {
@@ -695,9 +701,6 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
         [self.locationManager performSelector:@selector(requestAlwaysAuthorization) withObject:nil];
     }
-    
-    self.kontaktIOManager = [[BCLKontaktIOBeaconConfigManager alloc] initWithApiKey:@"OHXvaKTLjLLzqMjrucTxbsQxQLASHzyV"];
-    self.kontaktIOManager.delegate = self;
 }
 
 /*!
