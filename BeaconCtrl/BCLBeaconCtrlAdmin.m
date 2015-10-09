@@ -53,6 +53,11 @@
     }];
 }
 
+- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *))completion
+{
+    [self.backend syncBeacon:beacon completion:completion];
+}
+
 - (void)fetchZoneColors:(void (^)(NSError *))completion
 {
     __weak BCLBeaconCtrlAdmin *weakSelf = self;

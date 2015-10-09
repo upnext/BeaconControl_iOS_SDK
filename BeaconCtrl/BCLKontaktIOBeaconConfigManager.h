@@ -39,6 +39,6 @@
 
 - (void)startManagement;
 
-- (NSArray *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon;
+- (NSDictionary *)fieldsToUpdateForKontaktBeacon:(KTKBeacon *)beacon;
 
 @end

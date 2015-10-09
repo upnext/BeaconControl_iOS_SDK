@@ -522,11 +522,6 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.backend fetchUsersInRangesOfBeacons:beacons zones:zones completion:completion];
 }
 
-- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *))completion
-{
-    [self.backend syncBeacon:beacon completion:completion];
-}
-
 #pragma mark - BCLKontaktIOBeaconConfigManagerDelegate
 
 - (void)kontaktIOBeaconManagerDidFetchKontaktIOBeacons:(BCLKontaktIOBeaconConfigManager *)manager
@@ -585,12 +580,8 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.characteristicsAreBeingUpdated = NO;
             if (success) {
-                [self syncBeacon:beacon completion:^(NSError *syncError) {
-                    if (!syncError) {
-                        beacon.needsCharacteristicsUpdate = NO;
-                        [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
-                    }
-                }];
+                beacon.needsCharacteristicsUpdate = NO;
+                [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
             } else {
                 [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
             }
@@ -629,12 +620,8 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.firmwareUpdateProgress = NSNotFound;
             if (success) {
-                [self syncBeacon:beacon completion:^(NSError *syncError) {
-                    if (!syncError) {
-                        beacon.needsFirmwareUpdate = NO;
-                        [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
-                    }
-                }];
+                beacon.needsFirmwareUpdate = NO;
+                [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
             } else {
                 [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
             }

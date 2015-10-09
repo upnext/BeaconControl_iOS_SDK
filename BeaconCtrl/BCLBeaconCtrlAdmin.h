@@ -49,6 +49,13 @@
 - (void)fetchZonesAndBeacons:(void (^)(NSError *error))completion;
 
 /*!
+ * @brief Syncs a given beacon with its state on the backend
+ * @param beacon A beacon to sync
+ * @param completion The completion handler that is fires after the sync is finished
+ */
+- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *error))completion;
+
+/*!
  * @brief Fetch available zone colors from the backend
  * @discussion Each zone can have a color that is one the colors stored in the zoneColors property that is populated once this method is successfully called
  * @param completion A completion handler that is called after the fetch is finished
