@@ -152,6 +152,9 @@
         [devices enumerateObjectsUsingBlock:^(KTKBeaconDevice *beacon, BOOL *stop) {
             if ([self.configsToUpdate.allKeys containsObject:beacon.uniqueID] || [self.firmwaresToUpdate.allKeys containsObject:beacon.uniqueID]) {
                 NSLog(@"Trying update kontakt.io beacon with uniqueId %@", beacon.uniqueID);
+                if ([beacon.uniqueID isEqualToString:@"11zO"]) {
+                    NSLog(@"");
+                }
                 NSString *password;
                 NSString *masterPassword;
                 KTKError *error;

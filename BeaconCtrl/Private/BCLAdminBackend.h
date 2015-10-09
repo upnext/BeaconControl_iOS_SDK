@@ -28,6 +28,8 @@
 
 - (void)fetchBeacons:(void (^)(NSSet *beacons, NSError *error))completion;
 
+- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *error))completion;
+
 - (void)fetchZones:(NSSet *)beacons completion:(void (^)(NSSet *zones, NSError *error))completion;
 
 - (void)fetchZoneColors:(void (^)(NSArray *zoneColors, NSError *error))completion;

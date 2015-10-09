@@ -198,13 +198,6 @@ typedef NS_ENUM(NSUInteger, BCLBeaconCtrlPushEnvironment) {
 - (void)fetchUsersInRangesOfBeacons:(NSSet *)beacons zones:(NSSet *)zones completion:(void (^)(NSDictionary *result, NSError *error))completion;
 
 /*!
- * @brief Syncs a given beacon with its state on the backend
- * @param beacon A beacon to sync
- * @param completion The completion handler that is fires after the sync is finished
- */
-- (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *error))completion;
-
-/*!
  * @brief Logs out the current SDK client
  */
 - (void)logout;
