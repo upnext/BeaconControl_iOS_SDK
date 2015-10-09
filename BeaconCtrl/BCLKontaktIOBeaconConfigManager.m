@@ -210,7 +210,7 @@
     
     if (firmwareUpdateError) {
         dispatch_async(dispatch_get_main_queue(), ^() {
-            [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID success:NO];
+            [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID newFirwmareVersion:nil success:NO];
         });
         return NO;
     } KTKBeacon *beaconToUpdate = self.kontaktBeaconsDictionary[beaconDevice.uniqueID];
@@ -221,7 +221,7 @@
     
     if (updateError){
         dispatch_async(dispatch_get_main_queue(), ^() {
-            [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID success:NO];
+            [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID newFirwmareVersion:nil success:NO];
         });
         return NO;
     }
@@ -231,7 +231,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^() {
-        [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID success:YES];
+        [self.delegate kontaktIOBeaconManager:self didFinishUpdatingFirmwareForBeaconWithUniqueId:beaconDevice.uniqueID newFirwmareVersion:newFirmware.version success:YES];
     });
     return YES;
 }
@@ -246,12 +246,16 @@
     KTKCharacteristicDescriptor *descriptor;
     BOOL success = YES;
     
+    KTKBeacon *kontaktBeacon = self.kontaktBeaconsDictionary[config.uniqueID];
+    
     if (success && config.power) {
         descriptor = [beaconDevice characteristicDescriptorWithType:kKTKCharacteristicDescriptorTypeTxPowerLevel];
         writeError = [beaconDevice writeString:config.power.stringValue forCharacteristicWithDescriptor:descriptor];
         if (writeError) {
             *error = writeError;
             success = NO;
+        } else {
+            kontaktBeacon.power = config.power;
         }
     }
     
@@ -261,6 +265,8 @@
         if (writeError) {
             *error = writeError;
             success = NO;
+        } else {
+            kontaktBeacon.proximity = config.proximity;
         }
     }
     
@@ -270,6 +276,8 @@
         if (writeError) {
             *error = writeError;
             return NO;
+        } else {
+            kontaktBeacon.major = config.major;
         }
     }
     
@@ -279,6 +287,8 @@
         if (writeError) {
             *error = writeError;
             success = NO;
+        } else {
+            kontaktBeacon.minor = config.minor;
         }
     }
     
@@ -288,6 +298,8 @@
         if (writeError) {
             *error = writeError;
             success = NO;
+        } else {
+            kontaktBeacon.interval = config.interval;
         }
     }
     
@@ -303,7 +315,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^() {
-        [self.delegate kontaktIOBeaconManager:self didFinishUpdatingBeaconWithUniqueId:config.uniqueID success:success];
+        [self.delegate kontaktIOBeaconManager:self didFinishUpdatingBeaconWithUniqueId:config.uniqueID newConfig:config success:success];
     });
     
     return success;

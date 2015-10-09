@@ -574,13 +574,35 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     }];
 }
 
-- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingBeaconWithUniqueId:(NSString *)uniqueId success:(BOOL)success
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingBeaconWithUniqueId:(NSString *)uniqueId newConfig:(KTKBeacon *)config success:(BOOL)success
 {
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.characteristicsAreBeingUpdated = NO;
             if (success) {
                 beacon.needsCharacteristicsUpdate = NO;
+                if (config.power) {
+                    beacon.transmissionPower = config.power.integerValue;
+                }
+                
+                if (config.proximity) {
+                    beacon.proximityUUID = [[NSUUID alloc] initWithUUIDString:config.proximity];
+                }
+                
+                if (config.major) {
+                    beacon.major = config.major;
+                }
+                
+                if (config.minor) {
+                    beacon.minor = config.minor;
+                }
+                
+                if (config.interval) {
+                    beacon.transmissionInterval = config.interval.integerValue;
+                }
+                
+                beacon.fieldsToUpdate = [manager fieldsToUpdateForKontaktBeacon:manager.kontaktBeaconsDictionary[config.uniqueID]];
+                
                 [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
             } else {
                 [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
@@ -614,13 +636,14 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     }];
 }
 
-- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingFirmwareForBeaconWithUniqueId:(NSString *)uniqueId success:(BOOL)success
+- (void)kontaktIOBeaconManager:(BCLKontaktIOBeaconConfigManager *)manager didFinishUpdatingFirmwareForBeaconWithUniqueId:(NSString *)uniqueId newFirwmareVersion:(NSString *)firmwareVersion success:(BOOL)success
 {
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.firmwareUpdateProgress = NSNotFound;
             if (success) {
                 beacon.needsFirmwareUpdate = NO;
+                beacon.vendorFirmwareVersion = firmwareVersion;
                 [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
             } else {
                 [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
