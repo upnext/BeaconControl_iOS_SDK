@@ -58,11 +58,21 @@
 		
 		<option value="//api/name/accuracy">accuracy</option>
 		
+		<option value="//api/name/batteryLevel">batteryLevel</option>
+		
 		<option value="//api/name/beaconIdentifier">beaconIdentifier</option>
+		
+		<option value="//api/name/characteristicsAreBeingUpdated">characteristicsAreBeingUpdated</option>
 		
 		<option value="//api/name/estimatedDistance">estimatedDistance</option>
 		
+		<option value="//api/name/fieldsToUpdate">fieldsToUpdate</option>
+		
+		<option value="//api/name/firmwareUpdateProgress">firmwareUpdateProgress</option>
+		
 		<option value="//api/name/identifier">identifier</option>
+		
+		<option value="//api/name/instanceId">instanceId</option>
 		
 		<option value="//api/name/lastEnteredDate">lastEnteredDate</option>
 		
@@ -72,11 +82,19 @@
 		
 		<option value="//api/name/name">name</option>
 		
+		<option value="//api/name/namespaceId">namespaceId</option>
+		
+		<option value="//api/name/needsCharacteristicsUpdate">needsCharacteristicsUpdate</option>
+		
+		<option value="//api/name/needsFirmwareUpdate">needsFirmwareUpdate</option>
+		
 		<option value="//api/name/onChangeProximityCallback">onChangeProximityCallback</option>
 		
 		<option value="//api/name/onEnterCallback">onEnterCallback</option>
 		
 		<option value="//api/name/onExitCallback">onExitCallback</option>
+		
+		<option value="//api/name/protocol">protocol</option>
 		
 		<option value="//api/name/proximity">proximity</option>
 		
@@ -86,7 +104,17 @@
 		
 		<option value="//api/name/staysTimeInterval">staysTimeInterval</option>
 		
+		<option value="//api/name/transmissionInterval">transmissionInterval</option>
+		
+		<option value="//api/name/transmissionPower">transmissionPower</option>
+		
 		<option value="//api/name/triggers">triggers</option>
+		
+		<option value="//api/name/vendor">vendor</option>
+		
+		<option value="//api/name/vendorFirmwareVersion">vendorFirmwareVersion</option>
+		
+		<option value="//api/name/vendorIdentifier">vendorIdentifier</option>
 		
 		<option value="//api/name/zone">zone</option>
 		
@@ -157,6 +185,47 @@
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/protocol" title="protocol"></a>
+	<h3 class="method-title"><code><a href="#//api/name/protocol">&nbsp;&nbsp;protocol</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Protocol of a beacon (iBeacon or Eddystone)</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readwrite, nonatomic, strong) NSString *protocol</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/proximityUUID" title="proximityUUID"></a>
 	<h3 class="method-title"><code><a href="#//api/name/proximityUUID">&nbsp;&nbsp;proximityUUID</a></code>
 </h3>
@@ -209,7 +278,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Major value of a beacon</p>
+				<p>Major value of an iBeacon</p>
 			</div>
 			
 		    
@@ -250,12 +319,94 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Minor value of a beacon</p>
+				<p>Minor value of an iBeacon</p>
 			</div>
 			
 		    
 
 			<div class="method-subsection method-declaration"><code>@property (readwrite, nonatomic, strong) NSNumber *minor</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/namespaceId" title="namespaceId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/namespaceId">&nbsp;&nbsp;namespaceId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Namespace value of an Eddystone beacon</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readwrite, nonatomic, strong) NSString *namespaceId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/instanceId" title="instanceId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/instanceId">&nbsp;&nbsp;instanceId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Intance id of an Eddystone beacon</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readwrite, nonatomic, strong) NSString *instanceId</code></div>
 
 		    
 			
@@ -731,6 +882,457 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/vendor" title="vendor"></a>
+	<h3 class="method-title"><code><a href="#//api/name/vendor">&nbsp;&nbsp;vendor</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Beacon&rsquo;s vendor (i.e. Kontakt.io, Estimote or other)</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (strong) NSString *vendor</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/vendorIdentifier" title="vendorIdentifier"></a>
+	<h3 class="method-title"><code><a href="#//api/name/vendorIdentifier">&nbsp;&nbsp;vendorIdentifier</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Beacon&rsquo;s vendor-specific identifier</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (strong) NSString *vendorIdentifier</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/vendorFirmwareVersion" title="vendorFirmwareVersion"></a>
+	<h3 class="method-title"><code><a href="#//api/name/vendorFirmwareVersion">&nbsp;&nbsp;vendorFirmwareVersion</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Beacon&rsquo;s vendor-specific firmware version</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (strong) NSString *vendorFirmwareVersion</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/transmissionPower" title="transmissionPower"></a>
+	<h3 class="method-title"><code><a href="#//api/name/transmissionPower">&nbsp;&nbsp;transmissionPower</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Transmission power for a beacon. May be NSNotFound, if vendor is unknown</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger transmissionPower</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/transmissionInterval" title="transmissionInterval"></a>
+	<h3 class="method-title"><code><a href="#//api/name/transmissionInterval">&nbsp;&nbsp;transmissionInterval</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Transmission interval for a beacon. May be NSNotFound, if vendor is unknown</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger transmissionInterval</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/batteryLevel" title="batteryLevel"></a>
+	<h3 class="method-title"><code><a href="#//api/name/batteryLevel">&nbsp;&nbsp;batteryLevel</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Battery level for a beacon. May be NSNotFound, if vendor is unknown</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger batteryLevel</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/needsCharacteristicsUpdate" title="needsCharacteristicsUpdate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/needsCharacteristicsUpdate">&nbsp;&nbsp;needsCharacteristicsUpdate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A flag stating whether a given beacon has outdated properties</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL needsCharacteristicsUpdate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fieldsToUpdate" title="fieldsToUpdate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fieldsToUpdate">&nbsp;&nbsp;fieldsToUpdate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A dictionary of fields to update with property names as keys and new values as values. May be nil for beacons with an unknown vendor</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSDictionary *fieldsToUpdate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/characteristicsAreBeingUpdated" title="characteristicsAreBeingUpdated"></a>
+	<h3 class="method-title"><code><a href="#//api/name/characteristicsAreBeingUpdated">&nbsp;&nbsp;characteristicsAreBeingUpdated</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A flag stating whether a given beacon is currently being updated</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL characteristicsAreBeingUpdated</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/needsFirmwareUpdate" title="needsFirmwareUpdate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/needsFirmwareUpdate">&nbsp;&nbsp;needsFirmwareUpdate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A flag stating whether a given beacon has outdated firmware</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL needsFirmwareUpdate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/firmwareUpdateProgress" title="firmwareUpdateProgress"></a>
+	<h3 class="method-title"><code><a href="#//api/name/firmwareUpdateProgress">&nbsp;&nbsp;firmwareUpdateProgress</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Firmware update progress</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger firmwareUpdateProgress</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCLBeacon.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/onEnterCallback" title="onEnterCallback"></a>
 	<h3 class="method-title"><code><a href="#//api/name/onEnterCallback">&nbsp;&nbsp;onEnterCallback</a></code>
 </h3>
@@ -1060,7 +1662,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 UP-NEXT. All rights reserved. Updated: 2015-07-14</p>
+						<p class="copyright">Copyright &copy; 2015 UP-NEXT. All rights reserved. Updated: 2015-10-15</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
