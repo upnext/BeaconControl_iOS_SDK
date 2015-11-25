@@ -121,7 +121,10 @@
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                       if (error || ![httpResponse isSuccess]) {
