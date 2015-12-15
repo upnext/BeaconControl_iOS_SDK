@@ -72,6 +72,11 @@
     }];
 }
 
+- (void)fetchVendors:(void (^)(NSArray *vendors, NSError *error))completion
+{
+    [self.backend fetchVendors:completion];
+}
+
 - (void)loginAdminUserWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL, NSError *))completion
 {
     [self.backend authenticateUserWithEmail:email password:password completion:completion];

@@ -136,6 +136,12 @@
  */
 - (void)deleteZone:(BCLZone *)zone completion:(void (^)(BOOL success, NSError *error))completion;
 
+/*!
+ * @brief Fetches an array of available vendors
+ * @param completion A completion handler that will be called after the fetch is complete
+ */
+- (void)fetchVendors:(void (^)(NSArray *vendors, NSError *error))completion;
+
 - (void)logout;
 
 @end

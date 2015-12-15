@@ -188,6 +188,63 @@
     [task resume];
 }
 
+- (void)fetchVendors:(void (^)(NSArray *vendors, NSError *error))completion
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/vendors", [[self class] baseURLString]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [self setupURLRequest:request];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                      
+                                      if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
+                                          if (processingError) {
+                                              if(completion) completion(nil, processingError);
+                                              return;
+                                          }
+                                          
+                                      }]) {
+                                          return;
+                                      }
+                                      
+                                      NSError *jsonError = nil;
+                                      NSDictionary *responseDictionary;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
+                                      
+                                      if (error || ![httpResponse isSuccess]) {
+                                          if (completion) {
+                                              completion(nil, error ?: [NSError errorWithDomain:BCLErrorDomain code:BCLErrorHTTPError userInfo:@{NSLocalizedDescriptionKey: [httpResponse description]}]);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      
+                                      if (!responseDictionary && jsonError) {
+                                          if (completion) {
+                                              completion(nil, jsonError);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      if (completion) {
+                                          NSArray *vendors;
+                                          if ([responseDictionary respondsToSelector:@selector(objectForKey:)]) {
+                                              vendors = responseDictionary[@"vendors"];
+                                          }
+                                          
+                                          completion(vendors, nil);
+                                      }
+                                  }];
+    [task resume];
+}
+
 - (void)createBeacon:(BCLBeacon *)beacon testActionName:(NSString *)testActionName testActionTrigger:(BCLEventType)trigger testActionAttributes:(NSArray *)testActionAttributes completion:(void (^)(BCLBeacon *, NSError *))completion
 {
     if (!self.clientId || !self.clientSecret) {
