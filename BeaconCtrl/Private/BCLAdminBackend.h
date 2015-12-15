@@ -26,6 +26,8 @@
 - (void)updateBeacon:(BCLBeacon *)beacon testActionName:(NSString *)testActionName testActionTrigger:(BCLEventType)trigger testActionAttributes:(NSArray *)testActionAttributes completion:(void (^)(BOOL success, NSError *error))completion;
 - (void)deleteBeacon:(BCLBeacon *)beacon completion:(void (^)(BOOL success, NSError *error))completion;
 
+- (void)fetchVendors:(void (^)(NSArray *vendors, NSError *error))completion;
+
 - (void)fetchBeacons:(void (^)(NSSet *beacons, NSError *error))completion;
 
 - (void)syncBeacon:(BCLBeacon *)beacon completion:(void (^)(NSError *error))completion;
