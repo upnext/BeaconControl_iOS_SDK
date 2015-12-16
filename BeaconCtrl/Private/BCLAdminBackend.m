@@ -94,7 +94,10 @@
                                       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       if (error || ![httpResponse isSuccess]) {
                                           if (completion) {
@@ -152,7 +155,10 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       if (error || ![httpResponse isSuccess]) {
                                           if (completion) {
@@ -213,7 +219,7 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary;
+                                      NSDictionary *responseDictionary = nil;
                                       if (data) {
                                           responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
                                       }
@@ -321,7 +327,10 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       NSLog(@"Response dictionary: %@", responseDictionary);
                                       NSLog(@"Is success: %lu", httpResponse.isSuccess);
@@ -524,7 +533,11 @@
                                                         }
 
                                                         NSError *jsonError = nil;
-                                                        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+
+                                                        NSDictionary *responseDictionary = nil;
+                                                        if (data) {
+                                                            responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                                        }
 
                                                         if (error || ![httpResponse isSuccess]) {
                                                             if (completion) {
@@ -597,7 +610,11 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
+
                                       if (!responseDictionary && jsonError) {
                                           if (completion) {
                                               completion(jsonError);
@@ -648,7 +665,10 @@
                                                         }
 
                                                         NSError *jsonError = nil;
-                                                        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                                        NSDictionary *responseDictionary = nil;
+                                                        if (data) {
+                                                            responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                                        }
 
                                                         if (error || ![httpResponse isSuccess]) {
                                                             if (completion) {
@@ -714,7 +734,10 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       if (error || ![httpResponse isSuccess]) {
                                           if (completion) {
@@ -805,7 +828,11 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       if (error || ![httpResponse isSuccess]) {
                                           if (completion) {
@@ -900,7 +927,10 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       
                                       if (error || ![httpResponse isSuccess]) {
                                           if (completion) {

@@ -321,7 +321,10 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
                                       }
                                       
                                       NSError *jsonError = nil;
-                                      NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
                                       if (!responseDictionary && jsonError) {
                                           if (completion) {
                                               completion(nil, jsonError);

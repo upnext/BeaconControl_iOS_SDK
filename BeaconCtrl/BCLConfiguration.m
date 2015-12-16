@@ -52,7 +52,10 @@
 {
     // load json and translato to BeaconCtrl format
     NSError *error = nil;
-    NSDictionary *configurationDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    NSDictionary *configurationDictionary = nil;
+    if (jsonData) {
+        configurationDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    }
     if (error || !configurationDictionary)
         return NO;
 
