@@ -12,8 +12,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <SAMCache/SAMCache.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import <KontaktSDK/KTKBeacon.h>
-#import <KontaktSDK/KTKBeaconDevice.h>
+#import <KontaktSDK-OLD/KTKBeacon.h>
+#import <KontaktSDK-OLD/KTKBeaconDevice.h>
 
 #import "BCLConfiguration.h"
 #import "SAMCache+BeaconCtrl.h"

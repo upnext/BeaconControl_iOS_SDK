@@ -7,14 +7,14 @@
 //
 
 #import "BCLKontaktIOBeaconConfigManager.h"
-#import <KontaktSDK/KTKClient.h>
-#import <KontaktSDK/KTKBluetoothManager.h>
-#import <KontaktSDK/KTKBeacon.h>
-#import <KontaktSDK/KTKBeaconDevice.h>
-#import <KontaktSDK/KTKError.h>
-#import <KontaktSDK/KTKPagingBeacons.h>
-#import <KontaktSDK/KTKPagingConfigs.h>
-#import <KontaktSDK/KTKFirmware.h>
+#import <KontaktSDK-OLD/KTKClient.h>
+#import <KontaktSDK-OLD/KTKBluetoothManager.h>
+#import <KontaktSDK-OLD/KTKBeacon.h>
+#import <KontaktSDK-OLD/KTKBeaconDevice.h>
+#import <KontaktSDK-OLD/KTKError.h>
+#import <KontaktSDK-OLD/KTKPagingBeacons.h>
+#import <KontaktSDK-OLD/KTKPagingConfigs.h>
+#import <KontaktSDK-OLD/KTKFirmware.h>
 
 @interface BCLKontaktIOBeaconConfigManager () <KTKBluetoothManagerDelegate>
 
