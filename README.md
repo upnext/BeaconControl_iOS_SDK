@@ -1,26 +1,26 @@
 
-#BeaconCtrl
+#BeaconControl
 ##Integration Guide ver. 1.0
 ###Revision History
 
 
 Date       |Revision     |Description
 -----------|-------------|-----------
-10.07.2015 |    1.0      |Added BeaconCtrl usage guide. Added BeaconCtrl iOS SDK integration guide.
+10.07.2015 |    1.0      |Added BeaconCtrl usage guide. Added BeaconControl iOS SDK integration guide.
 
 ###Overview
 
-BeaconCtrl is your free entry to the beacon world. It's an open source platform that lets your applications sense the world around them. Beacons provide context-rich information to a user’s device upon entering the range of a specific beacon. BeaconCtrl allows you to set-up predefined triggers and actions for each beacon. For example, when a “listening” mobile device walks by a beacon, you can configure your app to send notifications, trigger URL openings, or deliver content.
+BeaconControl is your free entry to the beacon world. It's an open source platform that lets your applications sense the world around them. Beacons provide context-rich information to a user’s device upon entering the range of a specific beacon. BeaconControl allows you to set-up predefined triggers and actions for each beacon. For example, when a “listening” mobile device walks by a beacon, you can configure your app to send notifications, trigger URL openings, or deliver content.
 
 In order to use BeaconCtrl you will need to:
 
-1. Setup your beacon infrastructure (with the help of BeaconCtrl iOS App - link needed!) and configure actions triggered in your mobile applications. 
-2. Integrate the BeaconCtrl SDK with an application.
+1. Setup your beacon infrastructure (with the help of BeaconControl iOS App - link needed!) and configure actions triggered in your mobile applications. 
+2. Integrate the BeaconControl SDK with an application.
 
 
-### BeaconCtrl Architechture Description
+### BeaconControl Architechture Description
 
-BeaconCtrl SDK provides intuitive interfaces for interaction with two APIs provided by BeaconCtrl: Client API and Server-to-Server API (S2S API).
+BeaconControl SDK provides intuitive interfaces for interaction with two APIs provided by BeaconControl: Client API and Server-to-Server API (S2S API).
 
 Main public interfaces (refer to the efficial documentation for more detailed information):
 
@@ -36,27 +36,27 @@ BCLAction - this is the BeaconCtrl class that corresponds to actions that you ca
 
 BCLConfiguration - each mobile application has a configurations of beacons, zones and actions that it uses. This is the class that describes such an app configuration. You'll use it to get detailed information about your configuration, e.g. the number of beacons (and their details information) it interacts with, etc.
 
-BCLBeaconCtrlDelegate - this is a protocol that you'll implement in your interfaces to respond to BeaconCtrl SDK events. You'll get called each time an action is just about to be triggered, when the closest beacon or the current zone have changed, etc. You can also use this protocol to let the SDK know, which exact actions you want it to handle automatically and which you want to deal with on your own.
+BCLBeaconCtrlDelegate - this is a protocol that you'll implement in your interfaces to respond to BeaconControl SDK events. You'll get called each time an action is just about to be triggered, when the closest beacon or the current zone have changed, etc. You can also use this protocol to let the SDK know, which exact actions you want it to handle automatically and which you want to deal with on your own.
 
 
 ###Beacons Infrastructure Setup
 
-1. Create your BeaconCtrl account at www.beaconctrl.com
-2. Download the BeaconCtrl mobile application from the App Store
+1. Create your BeaconControl account at www.beaconctrl.com
+2. Download the BeaconControl mobile application from the App Store
 3. Log in to the application using your e-mail and password
-4. Add your beacons using the application or BeaconCtrl Admin Panel (UUID, Minor i Major numbers are essential to identify your beacons and are provided by their producer)
-5. Use BeaconCtrl test notifications to check your setup on the BeaconCtrl mobile application
-6. Create a folder of your new application using BeaconCtrl Admin Panel (Applications)
+4. Add your beacons using the application or BeaconControl Admin Panel (UUID, Minor i Major numbers are essential to identify your beacons and are provided by their producer)
+5. Use BeaconControl test notifications to check your setup on the BeaconControl mobile application
+6. Create a folder of your new application using BeaconControl Admin Panel (Applications)
 7. Copy the automatically generatedClient ID and Client Secret from the application settings in the Admin Panel
 8. Follow the below SDK integration instructions to start interacting with your beacons in your new mobile application
 
 
 ###Beacon OS iOS SDK Integration
 
-1. It's easiest to integrate BeaconCtrl iOS SDK using CocoaPods. The name of the pod is just "BeaconCtrl"
+1. It's easiest to integrate BeaconControl iOS SDK using CocoaPods. The name of the pod is just "BeaconControl"
 2. Add ``NSLocationWhenInUseUsageDescription`` and ``NSLocationAlwaysUsageDescription`` keys to project’s Info.plist file:
-3. Import BeaconCtrl iOS SDK headers into project’s source code and create a variable or property which will keep strong reference to ``BCLBeaconCtrl`` or ``BCLBeaconCtrlAdmin`` object.
-4. Initialise BeaconCtrl object:
+3. Import BeaconControl iOS SDK headers into project’s source code and create a variable or property which will keep strong reference to ``BCLBeaconCtrl`` or ``BCLBeaconCtrlAdmin`` object.
+4. Initialise BeaconControl object:
 
 
 	[BCLBeaconCtrl setupBeaconCtrlWithClientId:<YOUR CLIENT ID GOES HERE> 
