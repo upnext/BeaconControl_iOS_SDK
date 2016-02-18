@@ -69,6 +69,11 @@ static NSDate *lastRanging;
         } else {
             // init with ranged beacons
             self.batch[region.identifier] = @{@"refdate": [NSDate date], @"beacons": rangedBeacons};
+            id <BCLBeaconRangingBatchDelegate> delegateStrong = self.delegate;
+            if ([delegateStrong conformsToProtocol:@protocol(BCLBeaconRangingBatchDelegate)]) {
+                [delegateStrong processBeaconBatch:self beacons:rangedBeacons];
+            }
+            [self resetForRegion:region];
         }
     }
 }
