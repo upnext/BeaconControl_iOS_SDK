@@ -112,6 +112,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
 + (void)deleteBeaconCtrlFromCache
 {
+    [BCLActionEventScheduler clearCache];
     [[NSFileManager defaultManager] removeItemAtPath:[[self cacheDirectoryPath] stringByAppendingPathComponent:BCLBeaconCtrlArchiveFilename] error:nil];
 }
 
@@ -1519,6 +1520,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void)logout
 {
     [self.backend reset];
+    [BCLActionEventScheduler clearCache];
 }
 
 @end

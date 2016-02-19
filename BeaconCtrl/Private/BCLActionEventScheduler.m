@@ -111,7 +111,7 @@ NSString * _cacheKeyForEventType(BCLEventType type) {
         }
         
         // clear storage
-        [[SAMCache bcl_actionEventsCache] setObject:nil forKey:BCLActionEventSchedulerCachedEventsCacheKey];
+        [self.class clearCache];
         
         if (completion) {
             completion(nil);
@@ -144,14 +144,14 @@ NSString * _cacheKeyForEventType(BCLEventType type) {
     dispatch_queue_t queue = [self eventsDispatchQueue];
     dispatch_async(queue, ^{
         // store in cache
-        NSMutableArray *cachedEvents = [[SAMCache bcl_actionEventsCache] objectForKey:BCLActionEventSchedulerCachedEventsCacheKey];
+        NSMutableArray *cachedEvents = [[[SAMCache bcl_actionEventsCache] objectForKey:BCLActionEventSchedulerCachedEventsCacheKey] mutableCopy];
         if (!cachedEvents) {
             cachedEvents = [NSMutableArray array];
         }
         
         [cachedEvents addObject:event];
         
-        [[SAMCache bcl_actionEventsCache] setObject:cachedEvents forKey:BCLActionEventSchedulerCachedEventsCacheKey];
+        [[SAMCache bcl_actionEventsCache] setObject:cachedEvents.copy forKey:BCLActionEventSchedulerCachedEventsCacheKey];
         
         [[SAMCache bcl_lastActionEventsCache] setObject:event forKey:_cacheKeyForEventType(event.eventType)];
         
@@ -172,6 +172,11 @@ NSString * _cacheKeyForEventType(BCLEventType type) {
 - (BCLActionEvent *)lastStoredEventWithType:(BCLEventType)type
 {
     return [[SAMCache bcl_lastActionEventsCache] objectForKey:_cacheKeyForEventType(type)];
+}
+
++ (void)clearCache
+{
+    [[SAMCache bcl_actionEventsCache] setObject:nil forKey:BCLActionEventSchedulerCachedEventsCacheKey];
 }
 
 @end
