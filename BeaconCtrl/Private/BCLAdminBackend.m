@@ -28,6 +28,12 @@
 
 + (NSString *) baseURLString
 {
+    NSString *baseURLAPI = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"BCLBaseURLAPI"];
+    
+    if (baseURLAPI) {
+        return baseURLAPI;
+    }
+    
     return @"https://admin.beaconctrl.com/s2s_api/v1";
 }
 
@@ -78,9 +84,9 @@
                              @"client_id": self.clientId,
                              @"client_secret": self.clientSecret,
                              @"admin" : @{
-                                @"email": self.email,
-                                @"password": self.password
-                                }
+                                     @"email": self.email,
+                                     @"password": self.password
+                                     }
                              };
     
     [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:[params copy] options:0 error:nil]];
@@ -268,9 +274,9 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
     NSMutableDictionary *params = [@{
-                             @"client_id": self.clientId,
-                             @"client_secret": self.clientSecret
-                             } mutableCopy];
+                                     @"client_id": self.clientId,
+                                     @"client_secret": self.clientSecret
+                                     } mutableCopy];
     
     NSMutableDictionary *beaconDict = [[NSMutableDictionary alloc] init];
     if (beacon.name) beaconDict[@"name"] = beacon.name;
@@ -289,7 +295,7 @@
     if (beacon.zone) {
         beaconDict[@"zone_id"] = beacon.zone.zoneIdentifier;
     }
-
+    
     if (beacon.vendor) {
         beaconDict[@"vendor"] = beacon.vendor;
     }
@@ -394,7 +400,7 @@
             beaconDict[@"floor"] = beacon.location.floor;
         }
     }
-
+    
     if (beacon.vendor) {
         beaconDict[@"vendor"] = beacon.vendor;
     }
@@ -450,7 +456,7 @@
                                       }
                                   }];
     [task resume];
-
+    
 }
 
 - (void)deleteBeacon:(BCLBeacon *)beacon completion:(void (^)(BOOL, NSError *))completion
@@ -496,7 +502,7 @@
                                       }
                                   }];
     [task resume];
-
+    
 }
 
 - (void)fetchBeacons:(void (^)(NSSet *beacons, NSError *error))completion
@@ -507,65 +513,65 @@
         }
         return;
     }
-
+    
     NSString *urlString = [NSString stringWithFormat:@"%@/beacons", [[self class] baseURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setupURLRequest:request];
     request.HTTPMethod = @"GET";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-
+    
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
-                                                    ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-
-                                                        if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
-                                                            if (processingError) {
-                                                                if(completion) completion(nil, processingError);
-                                                                return;
-                                                            }
-
-                                                            [self retrySelector:@selector(fetchConfiguration:) sender:self parameters:@[completion]];
-                                                        }]) {
-                                                            return;
-                                                        }
-
-                                                        NSError *jsonError = nil;
-
-                                                        NSDictionary *responseDictionary = nil;
-                                                        if (data) {
-                                                            responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-                                                        }
-
-                                                        if (error || ![httpResponse isSuccess]) {
-                                                            if (completion) {
-                                                                completion(nil, error ?: [NSError errorWithDomain:BCLErrorDomain code:BCLErrorHTTPError userInfo:@{NSLocalizedDescriptionKey: [httpResponse description]}]);
-                                                            }
-                                                            return;
-                                                        }
-
-
-                                                        if (!responseDictionary && jsonError) {
-                                                            if (completion) {
-                                                                completion(nil, jsonError);
-                                                            }
-                                                            return;
-                                                        }
-
-                                                        if (completion) {
-                                                            NSMutableSet *beaconsSet = [NSMutableSet set];
-
-                                                            for (NSDictionary *beaconDictionary in responseDictionary[@"ranges"]) {
-                                                                BCLBeacon *beacon = [[BCLBeacon alloc] init];
-                                                                [beacon updatePropertiesFromDictionary:beaconDictionary];
-                                                                [beaconsSet addObject:beacon];
-                                                            }
-
-                                                            completion([beaconsSet copy], nil);
-                                                        }
-                                                    }];
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                      
+                                      if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
+                                          if (processingError) {
+                                              if(completion) completion(nil, processingError);
+                                              return;
+                                          }
+                                          
+                                          [self retrySelector:@selector(fetchConfiguration:) sender:self parameters:@[completion]];
+                                      }]) {
+                                          return;
+                                      }
+                                      
+                                      NSError *jsonError = nil;
+                                      
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
+                                      
+                                      if (error || ![httpResponse isSuccess]) {
+                                          if (completion) {
+                                              completion(nil, error ?: [NSError errorWithDomain:BCLErrorDomain code:BCLErrorHTTPError userInfo:@{NSLocalizedDescriptionKey: [httpResponse description]}]);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      
+                                      if (!responseDictionary && jsonError) {
+                                          if (completion) {
+                                              completion(nil, jsonError);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      if (completion) {
+                                          NSMutableSet *beaconsSet = [NSMutableSet set];
+                                          
+                                          for (NSDictionary *beaconDictionary in responseDictionary[@"ranges"]) {
+                                              BCLBeacon *beacon = [[BCLBeacon alloc] init];
+                                              [beacon updatePropertiesFromDictionary:beaconDictionary];
+                                              [beaconsSet addObject:beacon];
+                                          }
+                                          
+                                          completion([beaconsSet copy], nil);
+                                      }
+                                  }];
     [task resume];
 }
 
@@ -614,7 +620,7 @@
                                       if (data) {
                                           responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
                                       }
-
+                                      
                                       if (!responseDictionary && jsonError) {
                                           if (completion) {
                                               completion(jsonError);
@@ -639,64 +645,64 @@
         }
         return;
     }
-
+    
     NSString *urlString = [NSString stringWithFormat:@"%@/zones", [[self class] baseURLString]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self setupURLRequest:request];
     request.HTTPMethod = @"GET";
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-
+    
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
-                                                    ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-
-                                                        if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
-                                                            if (processingError) {
-                                                                if(completion) completion(nil, processingError);
-                                                                return;
-                                                            }
-
-                                                            [self retrySelector:@selector(fetchConfiguration:) sender:self parameters:@[completion]];
-                                                        }]) {
-                                                            return;
-                                                        }
-
-                                                        NSError *jsonError = nil;
-                                                        NSDictionary *responseDictionary = nil;
-                                                        if (data) {
-                                                            responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-                                                        }
-
-                                                        if (error || ![httpResponse isSuccess]) {
-                                                            if (completion) {
-                                                                completion(nil, error ?: [NSError errorWithDomain:BCLErrorDomain code:BCLErrorHTTPError userInfo:@{NSLocalizedDescriptionKey: [httpResponse description]}]);
-                                                            }
-                                                            return;
-                                                        }
-
-
-                                                        if (!responseDictionary && jsonError) {
-                                                            if (completion) {
-                                                                completion(nil, jsonError);
-                                                            }
-                                                            return;
-                                                        }
-
-                                                        if (completion) {
-                                                            NSMutableSet *zonesSet = [NSMutableSet set];
-
-                                                            for (NSDictionary *zoneDictionary in responseDictionary[@"zones"]) {
-                                                                BCLZone *zone = [[BCLZone alloc] init];
-                                                                [zone updatePropertiesFromDictionary:zoneDictionary beacons:beacons];
-                                                                [zonesSet addObject:zone];
-                                                            }
-
-                                                            completion([zonesSet copy], nil);
-                                                        }
-                                                    }];
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                      
+                                      if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
+                                          if (processingError) {
+                                              if(completion) completion(nil, processingError);
+                                              return;
+                                          }
+                                          
+                                          [self retrySelector:@selector(fetchConfiguration:) sender:self parameters:@[completion]];
+                                      }]) {
+                                          return;
+                                      }
+                                      
+                                      NSError *jsonError = nil;
+                                      NSDictionary *responseDictionary = nil;
+                                      if (data) {
+                                          responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                                      }
+                                      
+                                      if (error || ![httpResponse isSuccess]) {
+                                          if (completion) {
+                                              completion(nil, error ?: [NSError errorWithDomain:BCLErrorDomain code:BCLErrorHTTPError userInfo:@{NSLocalizedDescriptionKey: [httpResponse description]}]);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      
+                                      if (!responseDictionary && jsonError) {
+                                          if (completion) {
+                                              completion(nil, jsonError);
+                                          }
+                                          return;
+                                      }
+                                      
+                                      if (completion) {
+                                          NSMutableSet *zonesSet = [NSMutableSet set];
+                                          
+                                          for (NSDictionary *zoneDictionary in responseDictionary[@"zones"]) {
+                                              BCLZone *zone = [[BCLZone alloc] init];
+                                              [zone updatePropertiesFromDictionary:zoneDictionary beacons:beacons];
+                                              [zonesSet addObject:zone];
+                                          }
+                                          
+                                          completion([zonesSet copy], nil);
+                                      }
+                                  }];
     [task resume];
 }
 
@@ -765,7 +771,7 @@
                                       }
                                   }];
     [task resume];
-
+    
 }
 
 - (void)createZone:(BCLZone *)zone completion:(void (^)(BCLZone *, NSError *))completion
@@ -790,8 +796,8 @@
                                      } mutableCopy];
     
     NSMutableDictionary *zoneDict = [@{
-                                         @"name": zone.name
-                                         } mutableCopy];
+                                       @"name": zone.name
+                                       } mutableCopy];
     
     if (zone.beacons.count) {
         NSMutableArray *beaconIds = [@[] mutableCopy];
@@ -801,7 +807,7 @@
         
         zoneDict[@"beacon_ids"] = [beaconIds copy];
     }
-
+    
     if (zone.color) {
         zoneDict[@"color"] = [zone.color hexString].uppercaseString;
     }
@@ -828,7 +834,7 @@
                                       }
                                       
                                       NSError *jsonError = nil;
-
+                                      
                                       NSDictionary *responseDictionary = nil;
                                       if (data) {
                                           responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
@@ -865,7 +871,7 @@
                                       }
                                   }];
     [task resume];
-
+    
 }
 
 - (void)updateZone:(BCLZone *)zone completion:(void (^)(BOOL, NSError *))completion
@@ -945,7 +951,7 @@
                                       }
                                   }];
     [task resume];
-
+    
 }
 
 - (void)deleteZone:(BCLZone *)zone completion:(void (^)(BOOL, NSError *))completion
