@@ -22,6 +22,24 @@
 /** @name Methods */
 
 /*!
+ * @brief Called when a beacon or zone action is performed in background-mode
+ *
+ * @param action An action that will be called
+ */
+- (void) notifyAction:(BCLAction *)action;
+
+/*!
+ * @brief Called to ask a delegate if a local notificiation for the BeaconCtrl action should be presented automatically by the SDK
+ *
+ * @discussion When a BeaconCtrl action is performed in background-mode, a local notification is created automatically using the action's name. You can use this method to prevent this default behavior.
+ *
+ * @param action An action that would normally be notified in case of background-mode by default by the SDK
+ *
+ * @return YES, if the action should be notified automatically
+ */
+- (BOOL) shouldAutomaticallyNotifyAction:(BCLAction *)action;
+
+/*!
  * @brief Called just before a beacon or zone action is performed
  *
  * @param action An action that will be called

@@ -1063,19 +1063,31 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
  */
 - (void)performAction:(BCLAction *)action withTrigger:(BCLTrigger *)trigger withEventType:(BCLEventType)eventType
 {
+    id <BCLActionHandler> actionHandler = [self.actionHandlerFactory actionHandlerForActionTypeName:action.type];
+    
     if (self.isInBackground) {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = action.name;
-        notification.userInfo = @{@"action_id": action.identifier};
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        BOOL shouldAutomaticallyNotifyAction = YES;
+        
+        if (actionHandler && self.delegate && [self.delegate respondsToSelector:@selector(shouldAutomaticallyNotifyAction:)]) {
+            shouldAutomaticallyNotifyAction = [self.delegate shouldAutomaticallyNotifyAction:action];
+        }
+        
+        if (actionHandler && shouldAutomaticallyNotifyAction) {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.alertBody = action.name;
+            notification.userInfo = @{@"action_id": action.identifier};
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        } else if (self.delegate && [self.delegate respondsToSelector:@selector(notifyAction:)]) {
+            [self.delegate notifyAction:action];
+        }
+        
         return;
     }
+    
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(willPerformAction:)]) {
         [self.delegate willPerformAction:action];
     }
-    
-    id <BCLActionHandler> actionHandler = [self.actionHandlerFactory actionHandlerForActionTypeName:action.type];
     
     BOOL shouldAutomaticallyPerformAction = YES;
     

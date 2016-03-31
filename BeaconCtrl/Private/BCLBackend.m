@@ -45,13 +45,13 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
     if (!_userId) {
         _userId = [defaults objectForKey:BeaconCtrlUserIdKey iCloudSync:YES];
     }
-
+    
     if (!_userId) {
         _userId = [[NSUUID UUID] UUIDString];
         [defaults setObject:_userId forKey:BeaconCtrlUserIdKey iCloudSync:YES];
         [defaults synchronizeWithiCloud];
     }
-
+    
     return _userId;
 }
 
@@ -66,7 +66,13 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
 
 + (NSString *) baseURLString
 {
-    return @"https://admin.beaconctrl.com/api/v1";
+    NSString *baseURLAPI = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"BCLBaseURLAPI"];
+    
+    if (baseURLAPI) {
+        return baseURLAPI;
+    }
+    
+    return @"https://admin.beaconctrl.com/s2s_api/v1";
 }
 
 - (NSDictionary *)authenticationParameters
@@ -113,12 +119,12 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
                                       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                       
                                       if ([self shouldFurtherProcessResponse:response completion:^(NSError *processingError) {
-                                              if (processingError) {
-                                                  if(completion) completion(nil, processingError);
-                                                  return;
-                                              }
-                                              
-                                              [self retrySelector:@selector(fetchConfiguration:) sender:self parameters:@[completion]];
+                                          if (processingError) {
+                                              if(completion) completion(nil, processingError);
+                                              return;
+                                          }
+                                          
+                                          [self retrySelector:@selector(fetchConfiguration:) sender:self parameters:@[completion]];
                                       }]) {
                                           return;
                                       }
@@ -267,7 +273,7 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
     }];
     
     NSString *pathString = [NSString stringWithFormat:@"%@/presence", [BCLBackend baseURLString]];
-
+    
     NSMutableString *queryString = [NSMutableString string];
     if (beacons.count || zones.count) {
         if (beacons.count) {
