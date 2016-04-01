@@ -69,10 +69,10 @@ static NSString * const BeaconCtrlUserIdKey = @"BeaconCtrlUserId";
     NSString *baseURLAPI = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"BCLBaseURLAPI"];
     
     if (baseURLAPI) {
-        return baseURLAPI;
+        return [NSString stringWithFormat:@"%@/api/v1", baseURLAPI];
     }
     
-    return @"https://admin.beaconctrl.com/s2s_api/v1";
+    return @"https://admin.beaconctrl.com/api/v1";
 }
 
 - (NSDictionary *)authenticationParameters

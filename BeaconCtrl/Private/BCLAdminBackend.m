@@ -31,7 +31,7 @@
     NSString *baseURLAPI = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"BCLBaseURLAPI"];
     
     if (baseURLAPI) {
-        return baseURLAPI;
+        return [NSString stringWithFormat:@"%@/s2s_api/v1",baseURLAPI];
     }
     
     return @"https://admin.beaconctrl.com/s2s_api/v1";
