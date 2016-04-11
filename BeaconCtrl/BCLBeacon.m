@@ -132,7 +132,7 @@ const int kResetAccuracyReadoutsInterval = 60;
     
     BOOL ret = NO;
     if ([other respondsToSelector:@selector(identifier)]) {
-        ret = [[other identifier] isEqualToString:[self identifier]];
+        ret = self == other;
     }
     
     return ret;

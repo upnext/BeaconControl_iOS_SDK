@@ -36,7 +36,7 @@
 
 #import "BCLKontaktIOBeaconConfigManager.h"
 
-#define BCLDelayEventTimeInterval 3
+#define BCLDelayEventTimeInterval 0.5
 
 NSInteger const BCLInvalidParametersErrorCode = -1;
 NSInteger const BCLInvalidDataErrorCode = -5;
@@ -47,6 +47,9 @@ NSString * const BCLDeniedMonitoringErrorKey = @"BCLDeniedMonitoringErrorKey";
 NSString * const BCLDeniedLocationServicesErrorKey = @"BCLDeniedLocationServicesErrorKey";
 NSString * const BCLDeniedBackgroundAppRefreshErrorKey = @"BCLDeniedBackgroundAppRefreshErrorKey";
 NSString * const BCLDeniedNotificationsErrorKey = @"BCLDeniedNotificationsErrorKey";
+
+static NSString * const BCLPreviousZoneKey = @"previousZone";
+static NSString * const BCLCurrentZoneKey = @"currentZone";
 
 NSString * const BCLErrorDomain = @"com.up-next.BCLBeaconCtrl";
 
@@ -76,6 +79,8 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 @property (nonatomic, weak) BCLZone *cachedClosestZone;
 
 @property (nonatomic, strong) BCLKontaktIOBeaconConfigManager *kontaktIOManager;
+
+@property (nonatomic, strong) NSDictionary *previousZoneChange;
 
 @end
 
@@ -107,6 +112,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
 + (void)deleteBeaconCtrlFromCache
 {
+    [BCLActionEventScheduler clearCache];
     [[NSFileManager defaultManager] removeItemAtPath:[[self cacheDirectoryPath] stringByAppendingPathComponent:BCLBeaconCtrlArchiveFilename] error:nil];
 }
 
@@ -872,18 +878,23 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     NSLog(@"Current zone: %@", currentZone.name);
     NSLog(@"Cached zone: %@", self.cachedClosestZone.name);
     
-    if (![currentZone isEqual:self.cachedClosestZone] && !(currentZone == nil && self.cachedClosestZone == nil)) {
+    NSDictionary *currentZoneChange = @{
+                                        BCLPreviousZoneKey : self.cachedClosestZone ?: [NSNull null],
+                                        BCLCurrentZoneKey : currentZone ?: [NSNull null],
+    };
+    
+    if (![currentZone isEqual:self.cachedClosestZone] && !(currentZone == nil && self.cachedClosestZone == nil) && ![self.previousZoneChange isEqual:currentZoneChange]) {
         if ([self.eventScheduler isChangeZoneEventScheduled]) {
             [self.eventScheduler cancelChangeZoneEvent];
         }
         
         NSLog(@"The zone has changed. Scheduling a zone change event!!");
-        
-        
+        self.previousZoneChange = currentZoneChange;
         
         __weak typeof(self) weakSelf = self;
         [self.eventScheduler scheduleChangeZoneEventWithPreviousZone:self.cachedClosestZone newZone:currentZone afterDelay:BCLDelayEventTimeInterval onTime:^(BCLZone *previousZone, BCLZone *newZone) {
             weakSelf.cachedClosestZone = currentZone;
+            weakSelf.previousZoneChange = nil;
             
             NSLog(@"Firing a zone change event!!");
             
@@ -1521,6 +1532,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void)logout
 {
     [self.backend reset];
+    [BCLActionEventScheduler clearCache];
 }
 
 @end

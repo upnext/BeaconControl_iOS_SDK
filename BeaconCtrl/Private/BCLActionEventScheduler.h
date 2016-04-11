@@ -26,4 +26,6 @@ extern NSString * const BCLActionEventSchedulerBackgroundTaskIdentifier;
 
 - (BCLActionEvent *) lastStoredEventWithType:(BCLEventType)type;
 
++ (void)clearCache;
+
 @end
