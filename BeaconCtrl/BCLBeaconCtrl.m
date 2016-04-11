@@ -36,7 +36,7 @@
 
 #import "BCLKontaktIOBeaconConfigManager.h"
 
-#define BCLDelayEventTimeInterval 0.5
+#define BCLDelayEventTimeInterval 3
 
 NSInteger const BCLInvalidParametersErrorCode = -1;
 NSInteger const BCLInvalidDataErrorCode = -5;
