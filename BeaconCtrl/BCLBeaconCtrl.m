@@ -1439,6 +1439,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void) startRangingBeaconsInRegion:(CLBeaconRegion *)region
 {
     [self.locationManager startRangingBeaconsInRegion:region];
+    [self processRegionState:CLRegionStateInside forRegion:region];
 }
 
 /**
@@ -1446,7 +1447,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
  */
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLBeaconRegion *)region
 {
-    //[self performSelector:@selector(startRangingBeaconsInRegion:) withObject:region afterDelay:2];
+    [self performSelector:@selector(startRangingBeaconsInRegion:) withObject:region afterDelay:2];
     if ([region.major isEqual:@1] && [region.minor isEqual:@10]) {
         NSLog(@"");
     }
