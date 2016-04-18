@@ -7,6 +7,8 @@
 Date       |Revision     |Description
 -----------|-------------|-----------
 10.07.2015 |    1.0      |Added BeaconCtrl usage guide. Added BeaconControl iOS SDK integration guide.
+15.10.2015 |    1.1      |Switched to publicly available podspec version of UNNetworking. Bug fixes.
+14.04.2016 |    1.2      |Added support to override hosting default base URL. Fixed issues with beacons ranging and events cache.
 
 ###Overview
 
@@ -58,58 +60,50 @@ BCLBeaconCtrlDelegate - this is a protocol that you'll implement in your interfa
 3. In case of a self-hosted BeaconControl environment, you'll need to add the ``BCLBaseURLAPI`` key to project's Info.plist file in order to override the default base url. 
 4. Import BeaconControl iOS SDK headers into project’s source code and create a variable or property which will keep strong reference to ``BCLBeaconCtrl`` or ``BCLBeaconCtrlAdmin`` object.
 5. Initialise BeaconControl object:
-
-
-	[BCLBeaconCtrl setupBeaconCtrlWithClientId:<YOUR CLIENT ID GOES HERE> 
-                                  clientSecret:<YOUR CLIENT SECRET GOES HERE> 
-                                        userId:email 
-                               pushEnvironment: <SELECT YOUR PUSH ENVIRONMENT> 
-                                     pushToken:<YOUR PUSH TOKEN GOES HERE, IF APPLICABLE> 
-                                    completion:^(BCLBeaconCtrl *beaconCtrl, BOOL isRestoredFromCache, NSError *error) {
+````objc
+[BCLBeaconCtrl setupBeaconCtrlWithClientId:<YOUR CLIENT ID GOES HERE> 
+                              clientSecret:<YOUR CLIENT SECRET GOES HERE> 
+                                    userId:email 
+                           pushEnvironment: <SELECT YOUR PUSH ENVIRONMENT> 
+                                 pushToken:<YOUR PUSH TOKEN GOES HERE, IF APPLICABLE> 
+                                completion:^(BCLBeaconCtrl *beaconCtrl, BOOL isRestoredFromCache, NSError *error) {
                        <HERE BEACONCTRL SHOULD ALREADY BE SET UP>
-
 	                    beaconCtrl.delegate = <SOME OBJECT>
                    }];
-
-
+````
 6. You can now start reacting to BCLBeaconCtrl actions in your delegate object. Some actions are handled automatically (refer to FAQ and docs for more info):
 
-```objective-c
-	- (void)closestObservedRangeDidChange:(BCLRange *)closestRange
-	{
-	   ///<YOUR CODE GOES HERE>
-	}
+````objc
+- (void)closestObservedRangeDidChange:(BCLRange *)closestRange
+{
+    ///<YOUR CODE GOES HERE>
+}
 
+- (void)currentZoneDidChange:(BCLZone *)currentZone
+{
+    ///<YOUR CODE GOES HERE>
+}
 
-	- (void)currentZoneDidChange:(BCLZone *)currentZone
-	{
-	   ///<YOUR CODE GOES HERE>
-	}
+- (void)didChangeObservedRanges:(NSSet *)newObservedRanges
+{
+    ///<YOUR CODE GOES HERE>
+}
 
+- (BOOL)shouldAutomaticallyPerformAction:(BCLAction *)action
+{
+    ///<YOUR CODE GOES HERE>
+}
 
-	- (void)didChangeObservedRanges:(NSSet *)newObservedRanges
-	{
-	    ///<YOUR CODE GOES HERE>
-	}
+- (void)willPerformAction:(BCLAction *)action
+{
+    ///<YOUR CODE GOES HERE>
+}
 
+- (void) didPerformAction:(BCLAction *)action
+{
+    ///<YOUR CODE GOES HERE>
+}
 
-	- (BOOL)shouldAutomaticallyPerformAction:(BCLAction *)action
-	{
-		///<YOUR CODE GOES HERE>
-	}
-
-
-	- (void)willPerformAction:(BCLAction *)action
-	{
-	    ///<YOUR CODE GOES HERE>
-	}
-
-
-	- (void) didPerformAction:(BCLAction *)action
-	{
-	   ///<YOUR CODE GOES HERE>
-	}
-```
-
+````
 7. You can use BCLBeaconCtrlAdmin to interact with BeaconCtrl S2S API. Just store a reference to a BCLBeaconCtrlAdmin object in a variable or property.
 8. Refer to BCLBeaconCtrlAdmin class documentation for detailed information about its usage.
