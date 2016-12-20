@@ -13,6 +13,7 @@
 #import "BCLConfiguration.h"
 #import "BCLBeaconCtrlDelegate.h"
 #import "BCLEncodableObject.h"
+#import "BCLBeacon.h"
 
 extern NSInteger const BCLInvalidParametersErrorCode;
 extern NSInteger const BCLInvalidDataErrorCode;
@@ -147,7 +148,7 @@ typedef NS_ENUM(NSUInteger, BCLBeaconCtrlPushEnvironment) {
 /*!
  * @return An array of beacons sorted ascendingly by distance from the user's device
  */
-- (NSArray *)beaconsSortedByDistance;
+- (NSArray<BCLBeacon *> *)beaconsSortedByDistance;
 
 /*!
  * @brief the main setup method for the SDK

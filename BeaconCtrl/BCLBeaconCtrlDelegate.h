@@ -19,6 +19,8 @@
  */
 @protocol BCLBeaconCtrlDelegate <NSObject>
 
+@optional
+
 /** @name Methods */
 
 /*!

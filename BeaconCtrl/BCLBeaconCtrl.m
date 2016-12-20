@@ -313,7 +313,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         //When set to YES, the location manager sends beacon notifications when the user turns on the display and the device is already inside the region.
         beaconRegion.notifyEntryStateOnDisplay = YES;
         
-        if (![self.locationManager.monitoredRegions containsObject:beaconRegion]) {
+        if (self.locationManager != nil && ![self.locationManager.monitoredRegions containsObject:beaconRegion]) {
             [self.locationManager startMonitoringForRegion:beaconRegion];
         }
         
@@ -425,7 +425,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     return [[self.configuration.beacons filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"beaconIdentifier == %@", [lastEvent beaconIdentifier]]] anyObject];
 }
 
-- (NSArray *)beaconsSortedByDistance
+- (NSArray<BCLBeacon *> *)beaconsSortedByDistance
 {
     NSArray *result = [self.observedBeacons.allObjects sortedArrayUsingComparator:^NSComparisonResult(BCLBeacon *beacon1, BCLBeacon *beacon2) {
         if (beacon1.estimatedDistance > beacon2.estimatedDistance) {
@@ -574,7 +574,9 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.characteristicsAreBeingUpdated = YES;
-            [self.delegate beaconsPropertiesUpdateDidStart:beacon];
+            if ([self.delegate respondsToSelector:@selector(beaconsPropertiesUpdateDidStart:)]) {
+                [self.delegate beaconsPropertiesUpdateDidStart:beacon];
+            }
             *stop = YES;
         }
     }];
@@ -608,9 +610,10 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
                 }
                 
                 beacon.fieldsToUpdate = [manager fieldsToUpdateForKontaktBeacon:manager.kontaktBeaconsDictionary[config.uniqueID]];
-                
-                [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
-            } else {
+
+            }
+
+            if ([self.delegate respondsToSelector:@selector(beaconsPropertiesUpdateDidFinish:success:)]) {
                 [self.delegate beaconsPropertiesUpdateDidFinish:beacon success:success];
             }
             
@@ -624,7 +627,9 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.firmwareUpdateProgress = 0;
-            [self.delegate beaconsFirmwareUpdateDidStart:beacon];
+            if ([self.delegate respondsToSelector:@selector(beaconsFirmwareUpdateDidStart:)]) {
+                [self.delegate beaconsFirmwareUpdateDidStart:beacon];
+            }
             *stop = YES;
         }
     }];
@@ -635,7 +640,9 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self.configuration.beacons enumerateObjectsUsingBlock:^(BCLBeacon *beacon, BOOL *stop) {
         if (beacon.vendorIdentifier && [beacon.vendorIdentifier.lowercaseString isEqualToString:uniqueId.lowercaseString]) {
             beacon.firmwareUpdateProgress = progress;
-            [self.delegate beaconsFirmwareUpdateDidProgress:beacon progress:progress];
+            if ([self.delegate respondsToSelector:@selector(beaconsFirmwareUpdateDidProgress:progress:)]) {
+                [self.delegate beaconsFirmwareUpdateDidProgress:beacon progress:progress];
+            }
             NSLog(@"Updating firmware for beacon with uniqueId %@; progress: %lu", beacon.vendorIdentifier, progress);
             *stop = YES;
         }
@@ -650,8 +657,9 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
             if (success) {
                 beacon.needsFirmwareUpdate = NO;
                 beacon.vendorFirmwareVersion = firmwareVersion;
-                [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
-            } else {
+            }
+
+            if ([self.delegate respondsToSelector:@selector(beaconsFirmwareUpdateDidFinish:success:)]) {
                 [self.delegate beaconsFirmwareUpdateDidFinish:beacon success:success];
             }
             *stop = YES;
