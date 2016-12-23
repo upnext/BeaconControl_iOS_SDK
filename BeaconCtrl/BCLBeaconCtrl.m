@@ -38,6 +38,8 @@
 
 #define BCLDelayEventTimeInterval 3
 
+@import UserNotifications;
+
 NSInteger const BCLInvalidParametersErrorCode = -1;
 NSInteger const BCLInvalidDataErrorCode = -5;
 NSInteger const BCLErrorHTTPError = -10;
@@ -58,7 +60,7 @@ static NSString * const monitoredRegionIdentifiersKey = @"monitoredRegionIdentif
 static NSString * const BCLBeaconCtrlCacheDirectoryName = @"BeaconCtrl";
 static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
-@interface BCLBeaconCtrl () <CLLocationManagerDelegate, CBCentralManagerDelegate, BCLBeaconRangingBatchDelegate, BCLKontaktIOBeaconConfigManagerDelegate>
+@interface BCLBeaconCtrl () <CLLocationManagerDelegate, CBCentralManagerDelegate, BCLBeaconRangingBatchDelegate, BCLKontaktIOBeaconConfigManagerDelegate, UNUserNotificationCenterDelegate>
 
 @property (strong) CLLocationManager *locationManager;
 @property (strong) CBCentralManager *bluetoothCentralManager;
@@ -90,6 +92,9 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 {
     if (self = [super init]) {
         [self finishInitialization];
+        if ([UNUserNotificationCenter class]) {
+            [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        }
     }
     return self;
 }
@@ -1084,7 +1089,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 {
     id <BCLActionHandler> actionHandler = [self.actionHandlerFactory actionHandlerForActionTypeName:action.type];
     
-    if (self.isInBackground) {
+    if (self.isInBackground && ![UNUserNotificationCenter class]) {
         BOOL shouldAutomaticallyNotifyAction = YES;
         
         if (actionHandler && self.delegate && [self.delegate respondsToSelector:@selector(shouldAutomaticallyNotifyAction:)]) {
@@ -1092,10 +1097,21 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
         }
         
         if (actionHandler && shouldAutomaticallyNotifyAction) {
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.alertBody = action.name;
-            notification.userInfo = @{@"action_id": action.identifier};
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            if ([UNUserNotificationCenter class]) {
+                UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+                content.body = action.name;
+                content.userInfo = @{@"action_id": action.identifier};
+                UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:[action.identifier stringValue]
+                                                                                      content:content.copy
+                                                                                      trigger:nil];
+                [UNUserNotificationCenter.currentNotificationCenter addNotificationRequest:request withCompletionHandler:nil];
+            } else {
+                //iOS < 10
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                notification.alertBody = action.name;
+                notification.userInfo = @{@"action_id": action.identifier};
+                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            }
         } else if (self.delegate && [self.delegate respondsToSelector:@selector(notifyAction:)]) {
             [self.delegate notifyAction:action];
         }
@@ -1487,6 +1503,13 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     }
     self.estimatedUserLocation = [[BCLLocation alloc] initWithLocation:lastKnownLocation floor:floor];
     [self updateMonitoredBeacons];
+}
+
+#pragma mark - UNUserNotificationCenter Delegate
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    [self handleNotification:response.notification.request.content.userInfo error:nil];
 }
 
 #pragma mark - BLEBeaconsRangeBatchDelegate
