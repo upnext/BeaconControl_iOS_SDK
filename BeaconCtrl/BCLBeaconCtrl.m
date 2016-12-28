@@ -60,7 +60,7 @@ static NSString * const monitoredRegionIdentifiersKey = @"monitoredRegionIdentif
 static NSString * const BCLBeaconCtrlCacheDirectoryName = @"BeaconCtrl";
 static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 
-@interface BCLBeaconCtrl () <CLLocationManagerDelegate, CBCentralManagerDelegate, BCLBeaconRangingBatchDelegate, BCLKontaktIOBeaconConfigManagerDelegate, UNUserNotificationCenterDelegate>
+@interface BCLBeaconCtrl () <CLLocationManagerDelegate, CBCentralManagerDelegate, BCLBeaconRangingBatchDelegate, BCLKontaktIOBeaconConfigManagerDelegate >
 
 @property (strong) CLLocationManager *locationManager;
 @property (strong) CBCentralManager *bluetoothCentralManager;
@@ -92,9 +92,6 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 {
     if (self = [super init]) {
         [self finishInitialization];
-        if ([UNUserNotificationCenter class]) {
-            [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-        }
     }
     return self;
 }
@@ -1089,7 +1086,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 {
     id <BCLActionHandler> actionHandler = [self.actionHandlerFactory actionHandlerForActionTypeName:action.type];
     
-    if (self.isInBackground && ![UNUserNotificationCenter class]) {
+    if (self.isInBackground) {
         BOOL shouldAutomaticallyNotifyAction = YES;
         
         if (actionHandler && self.delegate && [self.delegate respondsToSelector:@selector(shouldAutomaticallyNotifyAction:)]) {
@@ -1503,13 +1500,6 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     }
     self.estimatedUserLocation = [[BCLLocation alloc] initWithLocation:lastKnownLocation floor:floor];
     [self updateMonitoredBeacons];
-}
-
-#pragma mark - UNUserNotificationCenter Delegate
-
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
-{
-    [self handleNotification:response.notification.request.content.userInfo error:nil];
 }
 
 #pragma mark - BLEBeaconsRangeBatchDelegate
