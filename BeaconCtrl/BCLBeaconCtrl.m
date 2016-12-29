@@ -1463,20 +1463,6 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     [self processRegionState:CLRegionStateInside forRegion:region];
 }
 
-/**
- * iOS correct proximity with the delay especially for multiple beacons available, so added this delay to let adjust at the start.
- */
-- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
-{
-    if ([region isKindOfClass:CLBeaconRegion.class]) {
-        CLBeaconRegion *beaconRegion = (CLBeaconRegion *) region;
-        [self performSelector:@selector(startRangingBeaconsInRegion:) withObject:region afterDelay:2];
-        if ([beaconRegion.major isEqual:@1] && [beaconRegion.minor isEqual:@10]) {
-            NSLog(@"");
-        }
-    }
-}
-
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error
 {
     NSLog(@"rangingBeaconsDidFailForRegion, reason: %@", error);
