@@ -83,6 +83,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 @property (nonatomic, strong) BCLKontaktIOBeaconConfigManager *kontaktIOManager;
 
 @property (nonatomic, strong) NSDictionary *previousZoneChange;
+@property (nonatomic, strong) NSSet <CLRegion *> *initiallyMonitoredRegions;
 
 @end
 
@@ -263,8 +264,19 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     if (authorizationStatus != kCLAuthorizationStatusNotDetermined && authorizationStatus != kCLAuthorizationStatusAuthorized && authorizationStatus != kCLAuthorizationStatusAuthorizedAlways && authorizationStatus != kCLAuthorizationStatusAuthorizedWhenInUse) {
         return NO;
     }
-    
-    return [self updateMonitoredBeacons];
+
+    BOOL result = [self updateMonitoredBeacons];
+
+    self.initiallyMonitoredRegions = self.locationManager.monitoredRegions;
+    [self performSelector:@selector(processInitiallyRangedRegions) withObject:nil afterDelay:1];
+    return result;
+}
+
+- (void)processInitiallyRangedRegions
+{
+    for (CLRegion *region in self.initiallyMonitoredRegions) {
+        [self.locationManager requestStateForRegion:region];
+    }
 }
 
 - (void) stopMonitoringBeacons
@@ -1373,23 +1385,21 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 /**
  *  Not used. For debugging purposed only
  */
-#ifdef DEBUG
-- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLBeaconRegion *)region
+
+/**
+ *  Call enter events for beacons that have been ranged at app launch
+ */
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
-    if (state == CLRegionStateInside) {
-        // Trick to start count stays even if application was already in area but lastEnter was not in the record
-        BCLBeacon *foundBeacon = [[self.observedBeacons filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"identifier == %@",region.identifier]] anyObject];
-        if (foundBeacon)
-        {
-            SAMCache *staysCache = [[SAMCache alloc] initWithName:BLEBeaconStaysCacheName(foundBeacon)];
-            NSDate *lastEnter = [staysCache objectForKey:foundBeacon.identifier];
-            if (!lastEnter) {
-                [staysCache setObject:[NSDate date] forKey:foundBeacon.identifier];
-            }
+    if ([self.initiallyMonitoredRegions containsObject:region]) {
+        if (state == CLRegionStateInside) {
+            [self locationManager:manager didEnterRegion:region];
         }
+        NSMutableSet *mutableRegions = self.initiallyMonitoredRegions.mutableCopy;
+        [mutableRegions removeObject:region];
+        self.initiallyMonitoredRegions = mutableRegions.copy;
     }
 }
-#endif
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
@@ -1460,7 +1470,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
 - (void) startRangingBeaconsInRegion:(CLBeaconRegion *)region
 {
     [self.locationManager startRangingBeaconsInRegion:region];
-    [self processRegionState:CLRegionStateInside forRegion:region];
+//    [self processRegionState:CLRegionStateInside forRegion:region];
 }
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error
