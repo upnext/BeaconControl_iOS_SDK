@@ -24,7 +24,7 @@
 @property (strong, nonatomic, readonly) NSSet <BCLExtension> *extensions;
 
 /// Fetched beacons. A set of CTLBeacon objects
-@property (strong, nonatomic, readonly) NSSet *beacons;
+@property (strong, nonatomic, readonly) NSSet <BCLBeacon *> *beacons;
 
 /// Fetched zones. A set of CTLZone objects
 @property (strong, nonatomic, readonly) NSSet *zones;
