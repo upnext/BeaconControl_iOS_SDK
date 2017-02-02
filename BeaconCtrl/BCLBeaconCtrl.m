@@ -268,7 +268,7 @@ static NSString * const BCLBeaconCtrlArchiveFilename = @"beacon_ctrl.data";
     BOOL result = [self updateMonitoredBeacons];
 
     self.initiallyMonitoredRegions = self.locationManager.monitoredRegions;
-    [self performSelector:@selector(processInitiallyRangedRegions) withObject:nil afterDelay:1];
+    [self performSelector:@selector(processInitiallyRangedRegions) withObject:nil afterDelay:3];
     return result;
 }
 
