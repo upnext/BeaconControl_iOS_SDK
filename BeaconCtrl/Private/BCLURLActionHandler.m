@@ -56,6 +56,7 @@
     UIViewController *webViewController = [[UIViewController alloc] init];
     webViewController.view.frame = visibleViewController.view.frame;
     UIWebView *webView = [[UIWebView alloc] initWithFrame:webViewController.view.frame];
+    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [webViewController.view addSubview:webView];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
